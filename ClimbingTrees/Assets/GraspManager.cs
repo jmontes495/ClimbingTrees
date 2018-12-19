@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GraspManager : MonoBehaviour {
 
+    public delegate void GraspActions();
+    public static event GraspActions PlayerTeleported;
+
     [SerializeField]
     private GameObject objectLeftHand;
 
@@ -33,6 +36,6 @@ public class GraspManager : MonoBehaviour {
     private void Teleport()
     {
         gameObject.transform.position = objectLeftHand.GetComponent<TreeBranchBehaviour>().GetTeleportPosition();
-        EventManager.Instance.Notify(EVENT_TYPE.ON_CLIMBED_BRANCH);
+        PlayerTeleported();
     }
 }

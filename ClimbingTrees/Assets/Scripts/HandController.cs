@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandController : MonoBehaviour, IListener {
+public class HandController : MonoBehaviour {
 
     public enum TypeOfHand { Left, Right };
 
@@ -36,9 +36,7 @@ public class HandController : MonoBehaviour, IListener {
     private bool lockedToBranch;
 
     void Start () {
-
-        EventManager.Instance.AddListener(EVENT_TYPE.ON_CLIMBED_BRANCH, this);
-
+        GraspManager.PlayerTeleported += ReturnHandsToOGPosition;
         myTransform = transform;
         isExtended = false;
         lockedToBranch = false;
@@ -61,13 +59,18 @@ public class HandController : MonoBehaviour, IListener {
 
         if (Input.GetKeyUp(myKeyCode))
         {
-            StopAllCoroutines();
-            lockedToBranch = false;
-            graspManager.ChangeGraspObject(null, typeOfHand);
-            myTransform.parent = originalParent;
-            StartCoroutine(ReturnHand());
+            ReturnHandsToOGPosition();
         }
 
+    }
+
+    private void ReturnHandsToOGPosition()
+    {
+        StopAllCoroutines();
+        lockedToBranch = false;
+        graspManager.ChangeGraspObject(null, typeOfHand);
+        myTransform.parent = originalParent;
+        StartCoroutine(ReturnHand());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,15 +107,5 @@ public class HandController : MonoBehaviour, IListener {
         isExtended = false;
     }
 
-    public void OnEvent(EVENT_TYPE Event_Type, Object Param = null)
-    {
-        if(Event_Type == EVENT_TYPE.ON_CLIMBED_BRANCH)
-        {
-            StopAllCoroutines();
-            lockedToBranch = false;
-            graspManager.ChangeGraspObject(null, typeOfHand);
-            myTransform.parent = originalParent;
-            StartCoroutine(ReturnHand());
-        }
-    }
+
 }
