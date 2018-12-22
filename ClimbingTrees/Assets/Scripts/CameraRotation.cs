@@ -10,6 +10,7 @@ public class CameraRotation : MonoBehaviour {
     float sensitivity = 5.0f;
     float smoothing = 2.0f;
     Transform myTransform;
+    float rotationLimit = 0.5f;
 
     GameObject character;
 	// Use this for initialization
@@ -21,16 +22,17 @@ public class CameraRotation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+        var md = new Vector2(Input.GetAxisRaw("RightStickHorizontal"), Input.GetAxisRaw("RightStickVertical"));
         md = Vector2.Scale(md, scaleVector);
         smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
         smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
         mouseLook += smoothV;
 
-        myTransform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-        //character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+        Quaternion resultCamera = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
+        if (resultCamera.x > -rotationLimit && resultCamera.x < rotationLimit)
+            myTransform.localRotation = resultCamera;
+        
         Quaternion result = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
-        //result.x = character.transform.rotation.x;
         result.z = character.transform.rotation.z;
         character.transform.localRotation = result;
     }

@@ -34,15 +34,6 @@ public class GraspManager : MonoBehaviour {
             DestroyImmediate(this);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            Debug.Log(":v");
-            
-        }
-    }
-
     public void EvaluateGrasp()
     {
         if (objectLeftHand != null && objectRightHand != null)

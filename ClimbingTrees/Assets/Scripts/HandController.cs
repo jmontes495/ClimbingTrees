@@ -17,8 +17,6 @@ public class HandController : MonoBehaviour {
 
     private Transform myTransform;
 
-    private KeyCode myKeyCode;
-
     private bool isExtended;
 
     private bool isExtending;
@@ -41,31 +39,18 @@ public class HandController : MonoBehaviour {
         isExtended = false;
         lockedToBranch = false;
         originalParent = myTransform.parent;
-
-        if (typeOfHand == TypeOfHand.Left)
-            myKeyCode = KeyCode.V;
-        else
-            myKeyCode = KeyCode.N;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKeyDown(myKeyCode))
-        {
-            StopAllCoroutines();
-            StartCoroutine(ExtendHand());
-        }
-
-        if (Input.GetKeyUp(myKeyCode))
-        {
-            PopHandsToOGPosition();
-        }
-
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            GraspManager.Instance.EvaluateGrasp();
-        }
+	public void InputExtendHand()
+    {
+        StopAllCoroutines();
+        StartCoroutine(ExtendHand());
     }
+
+    public void InputDropHand()
+    {
+        PopHandsToOGPosition();
+    }    
 
     private void ReturnHandsToOGPosition()
     {
@@ -87,6 +72,9 @@ public class HandController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        if (InputKeysManager.Instance.IsBalancing || !isExtended)
+            return;
+
         lockedToBranch = true;
         isExtending = false;
         isExtended = true;

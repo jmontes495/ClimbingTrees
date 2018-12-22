@@ -8,14 +8,10 @@ public class PlayerMovement : MonoBehaviour {
 
     private Transform myTransform;
 
-    [SerializeField]
-    private bool isBalancing;
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         myTransform = transform;
-        isBalancing = false;
         GraspManager.PlayerIsOnBranch += ChangeBalance;
         GraspManager.PlayerIsOnGround += ChangeGround;
         StartCoroutine(Walking());
@@ -23,20 +19,20 @@ public class PlayerMovement : MonoBehaviour {
 
     private void ChangeBalance()
     {
-        isBalancing = true;
         StopCoroutine(Walking());
     }
 
     private void ChangeGround()
     {
-        isBalancing = false;
         StartCoroutine(Walking());
     }
 
     private IEnumerator Walking()
     {
         WaitForFixedUpdate delay = new WaitForFixedUpdate();
-        while (!isBalancing)
+        while (InputKeysManager.Instance.IsBalancing)
+            yield return new WaitForEndOfFrame();
+        while (!InputKeysManager.Instance.IsBalancing)
         {
             float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
             float straffe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;

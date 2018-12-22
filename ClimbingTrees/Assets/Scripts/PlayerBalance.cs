@@ -10,45 +10,38 @@ public class PlayerBalance : MonoBehaviour
 
     private Transform myTransform;
 
-    private bool isBalancing;
-
     private float currentInclination = 0.1f;
 
     private float acceleration = 1.025f;
 
     private float delayInclination = 0.05f;
 
-    private float balanceLimit = 0.1f;
+    private float balanceLimit = 0.3f;
 
     private void Start()
     {
         myTransform = transform;
-        isBalancing = false;
         GraspManager.PlayerIsOnBranch += ChangeBalance;
         GraspManager.PlayerIsOnGround += ChangeGround;
     }
 
-    void Update()
-    {
-        
-    }
-
     private void ChangeBalance()
     {
-        isBalancing = true;
         StartCoroutine(ApplyForce());
     }
 
     private void ChangeGround()
     {
-        isBalancing = false;
         StopCoroutine(ApplyForce());
     }
 
     private IEnumerator ApplyForce()
     {
         WaitForSeconds delay = new WaitForSeconds(delayInclination);
-        while(isBalancing && myTransform.rotation.z < balanceLimit && myTransform.rotation.z > -balanceLimit)
+        while (!InputKeysManager.Instance.IsBalancing)
+            yield return new WaitForEndOfFrame();
+        
+        while (InputKeysManager.Instance.IsBalancing && myTransform.rotation.z < balanceLimit && myTransform.rotation.z > -balanceLimit)
         {
             float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
             float straffe = Input.GetAxis("Horizontal") * -strength;
@@ -57,7 +50,6 @@ public class PlayerBalance : MonoBehaviour
             currentInclination = acceleration*currentInclination + straffe;
             myTransform.Rotate(0, 0, currentInclination, 0);
             
-            Debug.Log(myTransform.rotation.z);
             yield return delay;
         }        
     }
