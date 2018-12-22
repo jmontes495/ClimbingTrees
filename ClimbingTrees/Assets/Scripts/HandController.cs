@@ -56,12 +56,15 @@ public class HandController : MonoBehaviour {
             StartCoroutine(ExtendHand());
         }
 
-
         if (Input.GetKeyUp(myKeyCode))
         {
             PopHandsToOGPosition();
         }
 
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            GraspManager.Instance.EvaluateGrasp();
+        }
     }
 
     private void ReturnHandsToOGPosition()

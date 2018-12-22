@@ -15,13 +15,28 @@ public class PlayerMovement : MonoBehaviour {
     {
         Cursor.lockState = CursorLockMode.Locked;
         myTransform = transform;
-        isBalancing = true;
+        isBalancing = false;
         GraspManager.PlayerIsOnBranch += ChangeBalance;
         GraspManager.PlayerIsOnGround += ChangeGround;
+        StartCoroutine(Walking());
     }
-    void Update()
+
+    private void ChangeBalance()
     {
-        if(!isBalancing)
+        isBalancing = true;
+        StopCoroutine(Walking());
+    }
+
+    private void ChangeGround()
+    {
+        isBalancing = false;
+        StartCoroutine(Walking());
+    }
+
+    private IEnumerator Walking()
+    {
+        WaitForFixedUpdate delay = new WaitForFixedUpdate();
+        while (!isBalancing)
         {
             float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
             float straffe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
@@ -32,16 +47,7 @@ public class PlayerMovement : MonoBehaviour {
             {
                 Cursor.lockState = CursorLockMode.None;
             }
+            yield return delay;
         }
-    }
-
-    private void ChangeBalance()
-    {
-        isBalancing = true;
-    }
-
-    private void ChangeGround()
-    {
-        isBalancing = false;
     }
 }
