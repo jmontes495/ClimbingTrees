@@ -59,7 +59,7 @@ public class HandController : MonoBehaviour {
 
         if (Input.GetKeyUp(myKeyCode))
         {
-            ReturnHandsToOGPosition();
+            PopHandsToOGPosition();
         }
 
     }
@@ -71,6 +71,15 @@ public class HandController : MonoBehaviour {
         graspManager.ChangeGraspObject(null, typeOfHand);
         myTransform.parent = originalParent;
         StartCoroutine(ReturnHand());
+    }
+
+    private void PopHandsToOGPosition()
+    {
+        StopAllCoroutines();
+        lockedToBranch = false;
+        graspManager.ChangeGraspObject(null, typeOfHand);
+        myTransform.parent = originalParent;
+        myTransform.position = initialTransform.position;
     }
 
     private void OnTriggerEnter(Collider other)

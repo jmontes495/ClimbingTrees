@@ -28,6 +28,10 @@ public class CameraRotation : MonoBehaviour {
         mouseLook += smoothV;
 
         myTransform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
-        character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+        //character.transform.localRotation = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+        Quaternion result = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
+        //result.x = character.transform.rotation.x;
+        result.z = character.transform.rotation.z;
+        character.transform.localRotation = result;
     }
 }

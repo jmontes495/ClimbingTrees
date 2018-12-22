@@ -6,12 +6,33 @@ public class GraspManager : MonoBehaviour {
 
     public delegate void GraspActions();
     public static event GraspActions PlayerTeleported;
+    public static event GraspActions PlayerIsOnBranch;
+    public static event GraspActions PlayerIsOnGround;
+
+    public static GraspManager Instance
+    {
+        get { return instance; }
+        set { }
+    }
 
     [SerializeField]
     private GameObject objectLeftHand;
 
     [SerializeField]
     private GameObject objectRightHand;
+
+    private static GraspManager instance;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            DestroyImmediate(this);
+    }
 
     void Update()
     {
@@ -37,5 +58,11 @@ public class GraspManager : MonoBehaviour {
     {
         gameObject.transform.position = objectLeftHand.GetComponent<TreeBranchBehaviour>().GetTeleportPosition();
         PlayerTeleported();
+        PlayerIsOnBranch();
+    }
+
+    public void PlayerIsOnTheGround()
+    {
+        PlayerIsOnGround();
     }
 }
