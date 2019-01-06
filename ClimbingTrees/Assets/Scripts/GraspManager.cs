@@ -21,6 +21,14 @@ public class GraspManager : MonoBehaviour {
     [SerializeField]
     private GameObject objectRightHand;
 
+    [SerializeField]
+    private Transform LeftHand;
+
+    [SerializeField]
+    private Transform RightHand;
+
+    private float telespeed = 10f;
+
     private static GraspManager instance;
 
     void Awake()
@@ -53,7 +61,22 @@ public class GraspManager : MonoBehaviour {
 
     private void Teleport()
     {
-        gameObject.transform.position = objectLeftHand.GetComponent<TreeBranchBehaviour>().GetTeleportPosition();
+        StartCoroutine(MoveToBranch());
+    }
+
+    private IEnumerator MoveToBranch()
+    {
+        float x = LeftHand.position.x + RightHand.position.x / 2;
+        float z = LeftHand.position.z + RightHand.position.z / 2;
+        Vector3 finalPosition = new Vector3(x, objectLeftHand.GetComponent<TreeBranchBehaviour>().GetTeleportPosition().y + 1, z);
+
+        Transform player = gameObject.transform;
+        while(player.position != finalPosition)
+        {
+            player.position = Vector3.MoveTowards(player.position, finalPosition, Time.fixedDeltaTime * telespeed);
+            yield return new WaitForFixedUpdate();
+        }
+
         PlayerTeleported();
         PlayerIsOnBranch();
     }

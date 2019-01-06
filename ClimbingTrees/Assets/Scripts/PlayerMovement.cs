@@ -17,6 +17,12 @@ public class PlayerMovement : MonoBehaviour {
         StartCoroutine(Walking());
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Cursor.lockState = CursorLockMode.None;
+    }
+
     private void ChangeBalance()
     {
         StopCoroutine(Walking());
@@ -39,10 +45,6 @@ public class PlayerMovement : MonoBehaviour {
 
             myTransform.Translate(straffe, 0, translation);
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
             yield return delay;
         }
     }
