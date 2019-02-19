@@ -31,7 +31,7 @@ public class CameraRotation : MonoBehaviour
     {
         if(!climbing)
         {
-            var md = new Vector2(Input.GetAxisRaw("RightStickHorizontal"), Input.GetAxisRaw("RightStickVertical"));
+            var md = new Vector2(Input.GetAxisRaw("RightJoystickHorizontal"), Input.GetAxisRaw("RightJoystickVertical"));
             md = Vector2.Scale(md, scaleVector);
             smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
             smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
