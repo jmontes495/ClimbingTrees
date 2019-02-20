@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class PlayerBalance : MonoBehaviour
 {
-    private float speed = 10.0f;
+    [SerializeField]
+    private float walkingSpped;
 
     private float strength = 1f;
 
     private Transform myTransform;
 
-    private float currentInclination = 0.1f;
+    private float currentInclination;
 
-    private float acceleration = 1.025f;
+    [SerializeField]
+    private float acceleration;
 
-    private float delayInclination = 0.05f;
+    [SerializeField]
+    private float delayInclination;
 
-    private float balanceLimit = 0.3f;
+    [SerializeField]
+    private float balanceLimit;
 
     private void Start()
     {
@@ -43,7 +47,7 @@ public class PlayerBalance : MonoBehaviour
         
         while (InputKeysManager.Instance.IsBalancing && myTransform.rotation.z < balanceLimit && myTransform.rotation.z > -balanceLimit)
         {
-            float translation = -Input.GetAxis("Axis 2") * speed * Time.deltaTime;
+            float translation = -Input.GetAxis("Axis 2") * walkingSpped * Time.deltaTime;
             float straffe = Input.GetAxis("Axis 1") * -strength;
 
             myTransform.Translate(0, 0, translation);

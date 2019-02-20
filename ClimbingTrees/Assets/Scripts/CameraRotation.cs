@@ -41,7 +41,10 @@ public class CameraRotation : MonoBehaviour
                 transform.localRotation = Quaternion.AngleAxis(mouseLook.y, Vector3.right);
             Quaternion result = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
             result.z = character.transform.rotation.z;
-            character.transform.localRotation = result;
+            if (!InputKeysManager.Instance.IsBalancing)
+                character.transform.localRotation = result;
+            else
+                character.transform.Rotate(0, Input.GetAxis("Axis 3"), 0, 0);
         }
     }
 
