@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         while (!InputKeysManager.Instance.IsBalancing)
         {
-            float translation = Input.GetAxis("LeftJoystickVertical") * speed * Time.deltaTime;
-            float straffe = Input.GetAxis("LeftJoystickHorizontal") * speed * Time.deltaTime;
+            float translation = -Input.GetAxis("Axis 2") * speed * Time.deltaTime;
+            float straffe = Input.GetAxis("Axis 1") * speed * Time.deltaTime;
 
             myTransform.Translate(straffe, 0, translation);
 

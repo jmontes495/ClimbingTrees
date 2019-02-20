@@ -43,8 +43,8 @@ public class PlayerBalance : MonoBehaviour
         
         while (InputKeysManager.Instance.IsBalancing && myTransform.rotation.z < balanceLimit && myTransform.rotation.z > -balanceLimit)
         {
-            float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-            float straffe = Input.GetAxis("Horizontal") * -strength;
+            float translation = -Input.GetAxis("Axis 2") * speed * Time.deltaTime;
+            float straffe = Input.GetAxis("Axis 1") * -strength;
 
             myTransform.Translate(0, 0, translation);
             currentInclination = acceleration*currentInclination + straffe;
