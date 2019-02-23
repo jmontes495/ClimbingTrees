@@ -15,6 +15,7 @@ public class CameraRotation : MonoBehaviour
     GameObject character;
     Quaternion originalRotation;
     bool climbing = false;
+    bool falling = false;
     float threshold = 0.05f;
     // Use this for initialization
     void Start()
@@ -24,12 +25,13 @@ public class CameraRotation : MonoBehaviour
         myTransform = transform;
         originalRotation = myTransform.localRotation;
         GraspManager.PlayerTeleported += PlayerClimbing;
+        PlayerBalance.PlayerFellFromBranch += PlayerFalling;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!climbing)
+        if(!climbing && !falling)
         {
             var md = new Vector2(Input.GetAxis("Axis 3"), Input.GetAxis("Axis 4"));
             md = Vector2.Scale(md, scaleVector);
@@ -39,6 +41,8 @@ public class CameraRotation : MonoBehaviour
             mouseLook.y = Mathf.Clamp(mouseLook.y, -90f, 90f);
             if(!InputKeysManager.Instance.IsBalancing)
                 transform.localRotation = Quaternion.AngleAxis(mouseLook.y, Vector3.right);
+            else
+                character.transform.Rotate(Input.GetAxis("Axis 4"), 0, 0, 0);
             Quaternion result = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
             result.z = character.transform.rotation.z;
             if (!InputKeysManager.Instance.IsBalancing)
@@ -51,6 +55,11 @@ public class CameraRotation : MonoBehaviour
     public void PlayerClimbing()
     {
         StartCoroutine(RestoreCamera());
+    }
+
+    public void PlayerFalling()
+    {
+        //StartCoroutine(LookDown());
     }
 
     private IEnumerator RestoreCamera()

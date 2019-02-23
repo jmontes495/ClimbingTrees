@@ -207,7 +207,6 @@ GameObject:
   - component: {fileID: 114827693423695008}
   - component: {fileID: 114103606153704084}
   - component: {fileID: 65412577695370616}
-  - component: {fileID: 1986060923}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -287,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0889ffeb934f4435aac549fdfc3ca349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
 --- !u!114 &114827693423695008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,24 +315,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84232640494ab437dbbb4a71741c36c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpped: 10
+  walkingSpeed: 10
   acceleration: 1.025
   delayInclination: 0.05
+  delayTurningToGround: 0.05
   balanceLimit: 0.3
+  initialStrengthOfInclination: 0.01
+  target: {fileID: 0}
 --- !u!65 &65412577695370616
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778388249117978}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &1986060923
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

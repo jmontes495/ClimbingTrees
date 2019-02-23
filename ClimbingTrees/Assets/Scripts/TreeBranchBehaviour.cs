@@ -23,12 +23,18 @@ public class TreeBranchBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        materialRenderer.material.color = Color.yellow;
+        if(materialRenderer.material.color == Color.yellow)
+            materialRenderer.material.color = Color.green;
+        else
+            materialRenderer.material.color = Color.yellow;
     }
 
     private void OnTriggerExit(Collider collision)
     {
-        materialRenderer.material.color = Color.white;
+        if (materialRenderer.material.color == Color.yellow)
+            materialRenderer.material.color = Color.white;
+        else
+            materialRenderer.material.color = Color.yellow;
     }
 
     public Vector3 GetTeleportPosition()

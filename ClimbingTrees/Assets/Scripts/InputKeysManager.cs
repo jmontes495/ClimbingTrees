@@ -40,6 +40,7 @@ public class InputKeysManager : MonoBehaviour {
 
         GraspManager.PlayerIsOnBranch += ChangeBalance;
         GraspManager.PlayerIsOnGround += ChangeGround;
+        PlayerBalance.PlayerFellFromBranch += ChangeGround;
     }
 
     private void ChangeBalance()
@@ -55,27 +56,27 @@ public class InputKeysManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button4) && !isBalancing)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button4))
         {
             leftHand.InputExtendHand();
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button5) && !isBalancing)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button5))
         {
             rightHand.InputExtendHand();
         }
 
-        if (Input.GetKeyUp(KeyCode.Joystick1Button4) && !isBalancing)
+        if (Input.GetKeyUp(KeyCode.Joystick1Button4))
         {
             leftHand.InputDropHand();
         }
 
-        if (Input.GetKeyUp(KeyCode.Joystick1Button5) && !isBalancing)
+        if (Input.GetKeyUp(KeyCode.Joystick1Button5))
         {
             rightHand.InputDropHand();
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0) && !isBalancing)
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             GraspManager.Instance.EvaluateGrasp();
         }
