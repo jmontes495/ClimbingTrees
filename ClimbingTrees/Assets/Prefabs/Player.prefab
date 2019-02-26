@@ -319,7 +319,7 @@ MonoBehaviour:
   acceleration: 1.025
   delayInclination: 0.05
   delayTurningToGround: 0.05
-  balanceLimit: 0.3
+  balanceLimit: 2
   initialStrengthOfInclination: 0.01
   target: {fileID: 0}
 --- !u!65 &65412577695370616

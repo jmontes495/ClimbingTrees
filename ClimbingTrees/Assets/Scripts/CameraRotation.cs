@@ -33,7 +33,7 @@ public class CameraRotation : MonoBehaviour
     {
         if(!climbing && !falling)
         {
-            var md = new Vector2(Input.GetAxis("Axis 3"), Input.GetAxis("Axis 4"));
+            var md = new Vector2(Input.GetAxis("HorizontalRight"), Input.GetAxis("VerticalRight"));
             md = Vector2.Scale(md, scaleVector);
             smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
             smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
@@ -42,13 +42,8 @@ public class CameraRotation : MonoBehaviour
             if(!InputKeysManager.Instance.IsBalancing)
                 transform.localRotation = Quaternion.AngleAxis(mouseLook.y, Vector3.right);
             else
-                character.transform.Rotate(Input.GetAxis("Axis 4"), 0, 0, 0);
-            Quaternion result = Quaternion.AngleAxis(mouseLook.x, character.transform.up);
-            result.z = character.transform.rotation.z;
-            if (!InputKeysManager.Instance.IsBalancing)
-                character.transform.localRotation = result;
-            else
-                character.transform.Rotate(0, Input.GetAxis("Axis 3"), 0, 0);
+                character.transform.Rotate(Input.GetAxis("VerticalRight"), 0, 0, 0);
+            character.transform.Rotate(0, Input.GetAxis("HorizontalRight"), 0, 0);
         }
     }
 

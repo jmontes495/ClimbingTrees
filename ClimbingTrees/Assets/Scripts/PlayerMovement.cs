@@ -41,10 +41,12 @@ public class PlayerMovement : MonoBehaviour {
             yield return new WaitForEndOfFrame();
         while (!InputKeysManager.Instance.IsBalancing)
         {
-            float translation = -Input.GetAxis("Axis 2") * speed * Time.deltaTime;
-            float straffe = Input.GetAxis("Axis 1") * speed * Time.deltaTime;
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            float moveVertical = Input.GetAxis("Vertical");
 
-            myTransform.Translate(straffe, 0, translation);
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+
+            myTransform.Translate(movement * speed * Time.deltaTime);
 
             yield return delay;
         }

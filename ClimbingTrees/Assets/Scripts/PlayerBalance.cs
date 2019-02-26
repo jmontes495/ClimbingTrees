@@ -62,12 +62,15 @@ public class PlayerBalance : MonoBehaviour
         else
             currentInclination = -initialStrengthOfInclination;
 
-        while (InputKeysManager.Instance.IsBalancing && myTransform.rotation.z < balanceLimit && myTransform.rotation.z > -balanceLimit)
+        while (InputKeysManager.Instance.IsBalancing && currentInclination < balanceLimit && currentInclination > -balanceLimit)
         {
-            float translation = -Input.GetAxis("Axis 2") * walkingSpeed * Time.deltaTime;
-            float straff = Input.GetAxis("Axis 1") * -strength;
+            float translation = -Input.GetAxis("Vertical") * walkingSpeed * Time.deltaTime;
+            float straff = Input.GetAxis("Horizontal") * -strength;
 
-            myTransform.Translate(0, 0, translation);
+            if (myTransform.rotation.y > 0.5f || myTransform.rotation.y < -0.5f)
+                straff = -straff;
+
+            myTransform.Translate(0, 0, -translation);
             currentInclination = acceleration*currentInclination + straff;
             myTransform.Rotate(0, 0, currentInclination, 0);
             
@@ -86,20 +89,6 @@ public class PlayerBalance : MonoBehaviour
             myTransform.rotation = Quaternion.Slerp(myTransform.rotation, finalRotation, 1 / 5f);
             yield return delay;
         }
-
-        /*
-        float finalBodyRotation = 0;
-        Debug.Log(currentInclination);
-        if (currentInclination > 0)
-            finalBodyRotation += 1;
-        else
-            finalBodyRotation -= 1;
-        while (myTransform.localRotation.y < 90 && myTransform.localRotation.y > -90)
-        {
-            myTransform.Rotate(0, finalBodyRotation, 0, 0);
-            yield return delay;
-        }
-        */
     }
 
     private bool thereIsDifference(Quaternion q1, Quaternion q2)
