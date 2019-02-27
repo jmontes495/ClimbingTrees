@@ -55,7 +55,7 @@ public class CameraRotation : MonoBehaviour
     {
         climbing = true;
         Quaternion finalRotation = myTransform.localRotation;
-        finalRotation.x = 0;
+        finalRotation.x = originalRotation.x;
         while (myTransform.localRotation.x > threshold || myTransform.localRotation.x < -threshold)
         {
             myTransform.localRotation = Quaternion.Slerp(myTransform.localRotation, finalRotation, 1/5f);

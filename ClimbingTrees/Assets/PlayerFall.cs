@@ -80,7 +80,7 @@ public class PlayerFall : MonoBehaviour
 
     private bool thereIsDifferenceQuaternions(Quaternion q1, Quaternion q2)
     {
-        float threshold = 0.01f;
+        float threshold = 0.1f;
         return Mathf.Abs(q1.x - q2.x) > threshold || Mathf.Abs(q1.y - q2.y) > threshold || Mathf.Abs(q1.z - q2.z) > threshold;
     }
 

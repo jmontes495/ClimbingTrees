@@ -23,7 +23,7 @@ public class TreeBranchBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (InputKeysManager.Instance.IsBalancing || InputKeysManager.Instance.IsFalling)
+        if (InputKeysManager.Instance.IsFalling)
             return;
 
         if (materialRenderer.material.color == Color.yellow)
@@ -34,7 +34,7 @@ public class TreeBranchBehaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        if (InputKeysManager.Instance.IsBalancing || InputKeysManager.Instance.IsFalling)
+        if (InputKeysManager.Instance.IsFalling)
             return;
 
         if (materialRenderer.material.color == Color.yellow)

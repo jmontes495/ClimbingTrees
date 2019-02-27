@@ -56,6 +56,8 @@ public class HandController : MonoBehaviour {
     {
         StopAllCoroutines();
         lockedToBranch = false;
+        isExtending = false;
+        isExtended = false;
         graspManager.ChangeGraspObject(null, typeOfHand);
         myTransform.parent = originalParent;
         StartCoroutine(ReturnHand());
@@ -72,7 +74,7 @@ public class HandController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (InputKeysManager.Instance.IsBalancing || InputKeysManager.Instance.IsFalling)
+        if (InputKeysManager.Instance.IsFalling || !isExtending)
             return;
 
         lockedToBranch = true;
