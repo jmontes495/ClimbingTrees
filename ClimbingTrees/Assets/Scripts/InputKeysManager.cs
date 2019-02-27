@@ -16,9 +16,17 @@ public class InputKeysManager : MonoBehaviour {
         private set { isBalancing = value; }
     }
 
+    public bool IsFalling
+    {
+        get { return isFalling; }
+        private set { isFalling = value; }
+    }
+
     [SerializeField]
 
     private bool isBalancing;
+
+    private bool isFalling;
 
     private static InputKeysManager instance;
 
@@ -39,18 +47,26 @@ public class InputKeysManager : MonoBehaviour {
             DestroyImmediate(this);
 
         GraspManager.PlayerIsOnBranch += ChangeBalance;
-        GraspManager.PlayerIsOnGround += ChangeGround;
-        PlayerBalance.PlayerFellFromBranch += ChangeGround;
+        PlayerBalance.PlayerFellFromBranch += ChangeFalling;
+        PlayerFall.PlayerReachedGound += ChangeGround;
     }
 
     private void ChangeBalance()
     {
         isBalancing = true;
+        isFalling = false;
     }
 
     private void ChangeGround()
     {
         isBalancing = false;
+        isFalling = false;
+    }
+
+    private void ChangeFalling()
+    {
+        isBalancing = false;
+        isFalling = true;
     }
 
     // Update is called once per frame

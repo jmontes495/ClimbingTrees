@@ -72,7 +72,7 @@ public class HandController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (InputKeysManager.Instance.IsBalancing)
+        if (InputKeysManager.Instance.IsBalancing || InputKeysManager.Instance.IsFalling)
             return;
 
         lockedToBranch = true;

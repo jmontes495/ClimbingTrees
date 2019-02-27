@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 114827693423695008}
   - component: {fileID: 114103606153704084}
   - component: {fileID: 65412577695370616}
+  - component: {fileID: 1667649136309902916}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -318,10 +319,8 @@ MonoBehaviour:
   walkingSpeed: 10
   acceleration: 1.025
   delayInclination: 0.05
-  delayTurningToGround: 0.05
   balanceLimit: 2
   initialStrengthOfInclination: 0.01
-  target: {fileID: 0}
 --- !u!65 &65412577695370616
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -335,6 +334,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1667649136309902916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778388249117978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96fd8337280374458b6285d9cb61d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  delayTurningToGround: 0.05
+  delayStandingUp: 0.05
+  fallingSpeed: 3
+  delayBetweenTurningAndFalling: 0
 --- !u!1 &1792210141731946
 GameObject:
   m_ObjectHideFlags: 0

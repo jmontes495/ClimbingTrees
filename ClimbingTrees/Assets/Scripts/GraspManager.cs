@@ -7,7 +7,6 @@ public class GraspManager : MonoBehaviour {
     public delegate void GraspActions();
     public static event GraspActions PlayerTeleported;
     public static event GraspActions PlayerIsOnBranch;
-    public static event GraspActions PlayerIsOnGround;
 
     public static GraspManager Instance
     {
@@ -79,10 +78,5 @@ public class GraspManager : MonoBehaviour {
 
         PlayerTeleported();
         PlayerIsOnBranch();
-    }
-
-    public void PlayerIsOnTheGround()
-    {
-        PlayerIsOnGround();
     }
 }

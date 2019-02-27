@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         myTransform = transform;
         GraspManager.PlayerIsOnBranch += ChangeBalance;
-        GraspManager.PlayerIsOnGround += ChangeGround;
+        PlayerFall.PlayerReachedGound += ChangeGround;
         StartCoroutine(Walking());
     }
 
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
         WaitForFixedUpdate delay = new WaitForFixedUpdate();
         while (InputKeysManager.Instance.IsBalancing)
             yield return new WaitForEndOfFrame();
-        while (!InputKeysManager.Instance.IsBalancing)
+        while (!InputKeysManager.Instance.IsBalancing && !InputKeysManager.Instance.IsFalling)
         {
             float moveHorizontal = Input.GetAxis("Horizontal");
             float moveVertical = Input.GetAxis("Vertical");

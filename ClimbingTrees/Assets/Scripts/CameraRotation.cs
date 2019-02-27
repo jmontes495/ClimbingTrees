@@ -25,7 +25,6 @@ public class CameraRotation : MonoBehaviour
         myTransform = transform;
         originalRotation = myTransform.localRotation;
         GraspManager.PlayerTeleported += PlayerClimbing;
-        PlayerBalance.PlayerFellFromBranch += PlayerFalling;
     }
 
     // Update is called once per frame
@@ -49,19 +48,14 @@ public class CameraRotation : MonoBehaviour
 
     public void PlayerClimbing()
     {
-        StartCoroutine(RestoreCamera());
+        StartCoroutine(MoveFaceAfterClimbing());
     }
 
-    public void PlayerFalling()
-    {
-        //StartCoroutine(LookDown());
-    }
-
-    private IEnumerator RestoreCamera()
+    private IEnumerator MoveFaceAfterClimbing()
     {
         climbing = true;
         Quaternion finalRotation = myTransform.localRotation;
-        finalRotation.x = originalRotation.x;
+        finalRotation.x = 0;
         while (myTransform.localRotation.x > threshold || myTransform.localRotation.x < -threshold)
         {
             myTransform.localRotation = Quaternion.Slerp(myTransform.localRotation, finalRotation, 1/5f);
