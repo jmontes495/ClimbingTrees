@@ -287,7 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0889ffeb934f4435aac549fdfc3ca349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 7
 --- !u!114 &114827693423695008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,9 +317,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 7
-  acceleration: 1.05
-  delayInclination: 0.05
-  balanceLimit: 3
+  acceleration: 1.025
+  delayInclination: 0.025
+  balanceLimit: 4
   initialStrengthOfInclination: 0.005
 --- !u!65 &65412577695370616
 BoxCollider:
