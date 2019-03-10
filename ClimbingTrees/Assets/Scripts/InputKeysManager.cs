@@ -72,27 +72,27 @@ public class InputKeysManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button4))
+        if (Input.GetMouseButtonDown(0))
         {
             leftHand.InputExtendHand();
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button5))
+        if (Input.GetMouseButtonDown(1))
         {
             rightHand.InputExtendHand();
         }
 
-        if (Input.GetKeyUp(KeyCode.Joystick1Button4))
+        if (Input.GetMouseButtonUp(0))
         {
             leftHand.InputDropHand();
         }
 
-        if (Input.GetKeyUp(KeyCode.Joystick1Button5))
+        if (Input.GetMouseButtonUp(1))
         {
             rightHand.InputDropHand();
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             GraspManager.Instance.EvaluateGrasp();
         }
