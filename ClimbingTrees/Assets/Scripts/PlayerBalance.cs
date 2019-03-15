@@ -28,7 +28,7 @@ public class PlayerBalance : MonoBehaviour
     [SerializeField]
     private float initialStrengthOfInclination;
 
-
+    private Vector3 directionOfBranch;
     private void Start()
     {
         myTransform = transform;
@@ -37,16 +37,28 @@ public class PlayerBalance : MonoBehaviour
 
     private void ChangeBalance()
     {
+        StopAllCoroutines();
         StartCoroutine(ApplyForce());
     }
 
-    private IEnumerator ApplyForce()
+    private void SetInitialPlayerRotation()
     {
         Quaternion playerRotation = myTransform.localRotation;
         playerRotation.z = 0;
         playerRotation.x = 0;
         myTransform.localRotation = playerRotation;
+        Quaternion globalRotation = myTransform.rotation;
+        globalRotation.y = 0;
+        myTransform.rotation = globalRotation;
+        Debug.LogError(InputKeysManager.Instance.currentBranchAngle);
+        myTransform.Rotate(new Vector3(0, InputKeysManager.Instance.currentBranchAngle, 0), Space.Self );
         currentInclination = 0;
+        directionOfBranch = myTransform.forward;
+    }
+
+    private IEnumerator ApplyForce()
+    {
+        SetInitialPlayerRotation();
         WaitForSeconds delay = new WaitForSeconds(delayInclination);
         while (!InputKeysManager.Instance.IsBalancing)
             yield return new WaitForEndOfFrame();
@@ -55,10 +67,11 @@ public class PlayerBalance : MonoBehaviour
 
         while (InputKeysManager.Instance.IsBalancing && currentInclination < balanceLimit && currentInclination > -balanceLimit)
         {
-            float translation = -Input.GetAxis("Vertical") * walkingSpeed * Time.deltaTime;
+            float translation = Input.GetAxis("Vertical") * walkingSpeed * Time.deltaTime;
             float straff = Input.GetAxis("Horizontal") * -strength;
 
-            myTransform.Translate(0, 0, -translation);
+            transform.position += directionOfBranch*translation;
+
             currentInclination = acceleration*currentInclination + straff;
             myTransform.Rotate(new Vector3(0, 0, currentInclination), Space.Self);
 
@@ -66,7 +79,5 @@ public class PlayerBalance : MonoBehaviour
             yield return delay;
         }
         PlayerFellFromBranch();
-    }
-
-    
+    }    
 }

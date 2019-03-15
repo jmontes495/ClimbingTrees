@@ -42,6 +42,8 @@ public class InputKeysManager : MonoBehaviour {
     [SerializeField]
     private HandController rightHand;
 
+    public float currentBranchAngle;
+
     void Awake()
     {
         if (instance == null)

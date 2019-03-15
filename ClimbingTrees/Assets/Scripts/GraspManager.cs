@@ -69,8 +69,9 @@ public class GraspManager : MonoBehaviour {
         float z = LeftHand.position.z + RightHand.position.z / 2;
         Vector3 finalPosition = 0.5f*(LeftHand.position + RightHand.position);
         finalPosition.y += 1;
-
         Transform player = gameObject.transform;
+
+        InputKeysManager.Instance.currentBranchAngle = objectRightHand.transform.rotation.z*180;
         while(player.position != finalPosition)
         {
             player.position = Vector3.MoveTowards(player.position, finalPosition, Time.fixedDeltaTime * telespeed);

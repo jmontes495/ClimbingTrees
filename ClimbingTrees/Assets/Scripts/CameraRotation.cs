@@ -59,6 +59,7 @@ public class CameraRotation : MonoBehaviour
             myTransform.localRotation = Quaternion.Slerp(myTransform.localRotation, finalRotation, 1/5f);
             yield return new WaitForFixedUpdate();
         }
+        // FOR LATER, TILTING THE CAMERA DOWN transform.Rotate(new Vector3(20, 0, 0), Space.Self);
         Input.ResetInputAxes();
         climbing = false;
     }
