@@ -38,11 +38,9 @@ public class CameraRotation : MonoBehaviour
             smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
             mouseLook += smoothV;
             mouseLook.y = Mathf.Clamp(mouseLook.y, -90f, 90f);
-            if(!InputKeysManager.Instance.IsBalancing)
-                transform.localRotation = Quaternion.AngleAxis(mouseLook.y, Vector3.right);
-            else
-                character.transform.Rotate(Input.GetAxis("Mouse Y"), 0, 0, 0);
-            character.transform.Rotate(0, Input.GetAxis("Mouse X"), 0, 0);
+
+            transform.localRotation = Quaternion.AngleAxis(mouseLook.y, Vector3.right);
+            character.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0), Space.Self);
         }
     }
 

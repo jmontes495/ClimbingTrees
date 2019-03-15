@@ -69,7 +69,6 @@ public class GraspManager : MonoBehaviour {
         float z = LeftHand.position.z + RightHand.position.z / 2;
         Vector3 finalPosition = 0.5f*(LeftHand.position + RightHand.position);
         finalPosition.y += 1;
-        Debug.LogError(LeftHand.position.z + " - " + finalPosition.z);
 
         Transform player = gameObject.transform;
         while(player.position != finalPosition)
