@@ -51,15 +51,12 @@ public class PlayerBalance : MonoBehaviour
         while (!InputKeysManager.Instance.IsBalancing)
             yield return new WaitForEndOfFrame();
 
-        if (myTransform.rotation.y < 0)
-            currentInclination = initialStrengthOfInclination;
-        else
-            currentInclination = -initialStrengthOfInclination;
+        currentInclination = initialStrengthOfInclination;
 
         while (InputKeysManager.Instance.IsBalancing && currentInclination < balanceLimit && currentInclination > -balanceLimit)
         {
             float translation = -Input.GetAxis("Vertical") * walkingSpeed * Time.deltaTime;
-            float straff = Input.GetAxis("Horizontal") * -strength;
+            float straff = Input.GetAxis("Horizontal") * strength;
 
             if (myTransform.rotation.y > 0.5f || myTransform.rotation.y < -0.5f)
                 straff = -straff;
