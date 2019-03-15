@@ -30,7 +30,7 @@ public class CameraRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!climbing && !falling)
+        if(!climbing && !falling && !InputKeysManager.Instance.IsFalling && !InputKeysManager.Instance.IsStandingUp)
         {
             var md = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
             md = Vector2.Scale(md, scaleVector);

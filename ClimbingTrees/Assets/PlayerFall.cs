@@ -6,6 +6,7 @@ public class PlayerFall : MonoBehaviour
 {
     public delegate void FallingEvent();
     public static event FallingEvent PlayerReachedGound;
+    public static event FallingEvent PlayerStandingUp;
 
     [SerializeField]
     private Transform target;
@@ -64,6 +65,7 @@ public class PlayerFall : MonoBehaviour
 
     private IEnumerator StandUp()
     {
+        PlayerStandingUp();
         WaitForSeconds delay = new WaitForSeconds(delayStandingUp);
         Quaternion finalRotation = myTransform.rotation;
         finalRotation.x = 0;
@@ -73,6 +75,7 @@ public class PlayerFall : MonoBehaviour
             myTransform.rotation = Quaternion.Slerp(myTransform.rotation, finalRotation, 1 / 5f);
             yield return delay;
         }
+        myTransform.localRotation = finalRotation;
         Input.ResetInputAxes();
 
         PlayerReachedGound();

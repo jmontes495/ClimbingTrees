@@ -42,6 +42,10 @@ public class PlayerBalance : MonoBehaviour
 
     private IEnumerator ApplyForce()
     {
+        Quaternion playerRotation = myTransform.localRotation;
+        playerRotation.z = 0;
+        playerRotation.x = 0;
+        myTransform.localRotation = playerRotation;
         currentInclination = 0;
         WaitForSeconds delay = new WaitForSeconds(delayInclination);
         while (!InputKeysManager.Instance.IsBalancing)
@@ -62,7 +66,8 @@ public class PlayerBalance : MonoBehaviour
 
             myTransform.Translate(0, 0, -translation);
             currentInclination = acceleration*currentInclination + straff;
-            myTransform.Rotate(0, 0, currentInclination, 0);
+            myTransform.Rotate(new Vector3(0, 0, currentInclination), Space.Self);
+
             
             yield return delay;
         }
