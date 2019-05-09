@@ -9,10 +9,13 @@ public class PlayerMovement : MonoBehaviour {
 
     private Transform myTransform;
 
+    private Rigidbody rb;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         myTransform = transform;
+        rb = GetComponent<Rigidbody>();
         GraspManager.PlayerIsOnBranch += ChangeBalance;
         PlayerFall.PlayerReachedGound += ChangeGround;
         StartCoroutine(Walking());
@@ -46,7 +49,8 @@ public class PlayerMovement : MonoBehaviour {
 
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-            myTransform.Translate(movement * speed * Time.deltaTime);
+            //myTransform.Translate(movement * speed * Time.deltaTime);
+            rb.MovePosition(transform.position + transform.TransformDirection(movement) * Time.deltaTime * speed);
 
             yield return delay;
         }

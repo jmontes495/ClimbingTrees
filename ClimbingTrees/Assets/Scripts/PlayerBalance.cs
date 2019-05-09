@@ -43,15 +43,7 @@ public class PlayerBalance : MonoBehaviour
 
     private void SetInitialPlayerRotation()
     {
-        Quaternion playerRotation = myTransform.localRotation;
-        playerRotation.z = 0;
-        playerRotation.x = 0;
-        myTransform.localRotation = playerRotation;
-        Quaternion globalRotation = myTransform.rotation;
-        globalRotation.y = 0;
-        myTransform.rotation = globalRotation;
-        Debug.LogError(InputKeysManager.Instance.currentBranchAngle);
-        myTransform.Rotate(new Vector3(0, InputKeysManager.Instance.currentBranchAngle, 0), Space.Self );
+        myTransform.localRotation = InputKeysManager.Instance.currentBranchAngle;
         currentInclination = 0;
         directionOfBranch = myTransform.forward;
     }

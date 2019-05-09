@@ -42,7 +42,7 @@ public class InputKeysManager : MonoBehaviour {
     [SerializeField]
     private HandController rightHand;
 
-    public float currentBranchAngle;
+    public Quaternion currentBranchAngle;
 
     void Awake()
     {

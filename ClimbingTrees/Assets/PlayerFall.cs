@@ -33,6 +33,7 @@ public class PlayerFall : MonoBehaviour
 
     private void TurnAndFall()
     {
+        GetComponent<Rigidbody>().isKinematic = true;
         StartCoroutine(TurnToGround());
         StartCoroutine(FallIntoGround());
     }
@@ -77,7 +78,7 @@ public class PlayerFall : MonoBehaviour
         }
         myTransform.localRotation = finalRotation;
         Input.ResetInputAxes();
-
+        GetComponent<Rigidbody>().isKinematic = false;
         PlayerReachedGound();
     }
 
