@@ -8,11 +8,13 @@ public class TreeBranchBehaviour : MonoBehaviour
     MeshRenderer materialRenderer;
     
     private Transform teleportPosition;
+
+    private Color color;
     // Use this for initialization
     void Start()
     {
         materialRenderer = GetComponent<MeshRenderer>();
-        materialRenderer.material.color = Color.white;
+        color = materialRenderer.material.color;
         teleportPosition = transform;
     }
 
@@ -33,7 +35,7 @@ public class TreeBranchBehaviour : MonoBehaviour
             return;
 
         if (materialRenderer.material.color == Color.yellow)
-            materialRenderer.material.color = Color.white;
+            materialRenderer.material.color = color;
         else
             materialRenderer.material.color = Color.yellow;
     }
