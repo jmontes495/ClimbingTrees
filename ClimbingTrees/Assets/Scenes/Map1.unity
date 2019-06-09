@@ -4570,7 +4570,12 @@ PrefabInstance:
     - target: {fileID: 114103606153704084, guid: 7e7793596159a455086af02fbba9cb5d,
         type: 3}
       propertyPath: acceleration
-      value: 0.9
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114103606153704084, guid: 7e7793596159a455086af02fbba9cb5d,
+        type: 3}
+      propertyPath: initialStrengthOfInclination
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 1984583234794145372, guid: 7e7793596159a455086af02fbba9cb5d,
         type: 3}
