@@ -46,6 +46,8 @@ public class PlayerBalance : MonoBehaviour
         myTransform.localRotation = InputKeysManager.Instance.currentBranchAngle;
         currentInclination = 0;
         directionOfBranch = myTransform.forward;
+        if (transform.localRotation.y - directionOfBranch.y > 0.5f || transform.localRotation.y - directionOfBranch.y < -0.5f)
+            directionOfBranch = -myTransform.forward;
     }
 
     private IEnumerator ApplyForce()
@@ -61,8 +63,12 @@ public class PlayerBalance : MonoBehaviour
         {
             float translation = Input.GetAxis("Vertical") * walkingSpeed * Time.deltaTime;
             float straff = Input.GetAxis("Horizontal") * -strength;
+            float directionOfWalking = 1;
 
-            transform.position += directionOfBranch*translation;
+            if (transform.localRotation.y - directionOfBranch.y > 0.5f || transform.localRotation.y - directionOfBranch.y < -0.5f)
+                directionOfWalking = -1;
+
+            transform.position += directionOfBranch*translation*directionOfWalking;
 
             currentInclination = acceleration*currentInclination + straff;
             myTransform.Rotate(new Vector3(0, 0, currentInclination), Space.Self);
