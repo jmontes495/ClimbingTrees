@@ -28,11 +28,19 @@ public class InputKeysManager : MonoBehaviour {
         private set { isStandingUp = value; }
     }
 
+	public bool IsCrouching
+    {
+		get { return isCrouching; }
+		private set { isCrouching = value; }
+    }
+
     private bool isBalancing;
 
     private bool isFalling;
 
     private bool isStandingUp;
+
+	private bool isCrouching;
 
     private static InputKeysManager instance;
 
@@ -41,6 +49,9 @@ public class InputKeysManager : MonoBehaviour {
 
     [SerializeField]
     private HandController rightHand;
+
+	[SerializeField]
+	private Crouching crouchingController;
 
     public Quaternion currentBranchAngle;
 
@@ -116,6 +127,16 @@ public class InputKeysManager : MonoBehaviour {
             GraspManager.Instance.EvaluateGrasp();
         }
 
-        
+		if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+			isCrouching = true;
+			crouchingController.InputCrouch();
+        }
+
+		if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            isCrouching = false;   
+			crouchingController.InputStandUp();
+        }
     }
 }
