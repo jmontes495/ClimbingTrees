@@ -30,6 +30,8 @@ public class GraspManager : MonoBehaviour {
 
     private static GraspManager instance;
 
+    private TreeBranchBehaviour currentBranch;
+
     void Awake()
     {
         if (instance == null)
@@ -46,7 +48,10 @@ public class GraspManager : MonoBehaviour {
         if (objectLeftHand != null && objectRightHand != null)
         {
             if (ReferenceEquals(objectLeftHand, objectRightHand))
+            {
+                currentBranch = objectLeftHand.GetComponent<TreeBranchBehaviour>();
                 Teleport();
+            }
         }
     }
 
@@ -80,5 +85,6 @@ public class GraspManager : MonoBehaviour {
 
         PlayerTeleported();
         PlayerIsOnBranch();
+        currentBranch.SetAsCurrentBranch();
     }
 }

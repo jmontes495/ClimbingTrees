@@ -34,7 +34,7 @@ public class HandController : MonoBehaviour {
     private bool lockedToBranch;
 
     void Start () {
-        GraspManager.PlayerTeleported += ReturnHandsToOGPosition;
+        GraspManager.PlayerTeleported += PopHandsToOGPosition;
         myTransform = transform;
         isExtended = false;
         lockedToBranch = false;
@@ -49,7 +49,7 @@ public class HandController : MonoBehaviour {
 
     public void InputDropHand()
     {
-        PopHandsToOGPosition();
+        ReturnHandsToOGPosition();
     }    
 
     private void ReturnHandsToOGPosition()
@@ -67,6 +67,8 @@ public class HandController : MonoBehaviour {
     {
         StopAllCoroutines();
         lockedToBranch = false;
+        isExtending = false;
+        isExtended = false;
         graspManager.ChangeGraspObject(null, typeOfHand);
         myTransform.parent = originalParent;
         myTransform.position = initialTransform.position;
@@ -77,6 +79,10 @@ public class HandController : MonoBehaviour {
         if (InputKeysManager.Instance.IsFalling || !isExtending)
             return;
 
+        TreeBranchBehaviour branch = other.GetComponent<TreeBranchBehaviour>();
+        if (branch == null || branch.IsCurrentBranch)
+            return;
+        
         lockedToBranch = true;
         isExtending = false;
         isExtended = true;
