@@ -23,11 +23,17 @@ public class PlayerFall : MonoBehaviour
     [SerializeField]
     private float delayBetweenTurningAndFalling;
 
+    [SerializeField]
+    private bool isStandingUp;
+
     private Transform myTransform;
+
+    private Quaternion initialRotation;
 
     private void Start()
     {
         myTransform = transform;
+        initialRotation = myTransform.rotation;
         PlayerBalance.PlayerFellFromBranch += TurnAndFall;
     }
 
@@ -45,7 +51,7 @@ public class PlayerFall : MonoBehaviour
         Quaternion finalRotation = Quaternion.LookRotation(direction);
         while (thereIsDifferenceQuaternions(myTransform.rotation, finalRotation))
         {
-            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, finalRotation, 1 / 5f);
+            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, finalRotation, Time.deltaTime * 10f);
             yield return delay;
         }        
     }
@@ -67,25 +73,41 @@ public class PlayerFall : MonoBehaviour
     private IEnumerator StandUp()
     {
         PlayerStandingUp();
+        isStandingUp = true;
+        StartCoroutine(ForceStandUp());
         WaitForSeconds delay = new WaitForSeconds(delayStandingUp);
-        Quaternion finalRotation = myTransform.rotation;
-        finalRotation.x = 0;
-        finalRotation.z = 0;
+        Quaternion finalRotation = initialRotation;
         while (thereIsDifferenceQuaternions(myTransform.rotation, finalRotation))
         {
-            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, finalRotation, 1 / 5f);
+            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, finalRotation, Time.deltaTime * 10f);
             yield return delay;
         }
+        StopCoroutine(ForceStandUp());
         myTransform.localRotation = finalRotation;
         Input.ResetInputAxes();
         GetComponent<Rigidbody>().isKinematic = false;
+        isStandingUp = false;
         PlayerReachedGound();
+    }
+
+    private IEnumerator ForceStandUp()
+    {
+        yield return new WaitForSeconds(4f);
+        if (isStandingUp)
+        {
+            StopCoroutine(StandUp());
+            myTransform.localRotation = initialRotation;
+            Input.ResetInputAxes();
+            GetComponent<Rigidbody>().isKinematic = false;
+            isStandingUp = false;
+            PlayerReachedGound();
+        }
     }
 
     private bool thereIsDifferenceQuaternions(Quaternion q1, Quaternion q2)
     {
-        float threshold = 0.1f;
-        return Mathf.Abs(q1.x - q2.x) > threshold || Mathf.Abs(q1.y - q2.y) > threshold || Mathf.Abs(q1.z - q2.z) > threshold;
+        float threshold = 0.01f;
+        return Quaternion.Angle(q1, q2) > threshold;
     }
 
     private bool thereIsDifferenceVector(Vector3 q1, Vector3 q2)
