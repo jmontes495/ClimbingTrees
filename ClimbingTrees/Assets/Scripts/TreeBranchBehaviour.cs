@@ -59,6 +59,9 @@ public class TreeBranchBehaviour : MonoBehaviour
     public void SetAsCurrentBranch()
     {
         isCurrentBranch = true;
+		Color transluscent = color;
+		transluscent.a = 0.4f;
+		materialRenderer.material.color = transluscent;
     }
 
     public Vector3 GetTeleportPosition()

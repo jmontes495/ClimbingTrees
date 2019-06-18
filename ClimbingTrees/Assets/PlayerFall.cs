@@ -39,7 +39,9 @@ public class PlayerFall : MonoBehaviour
 
     private void TurnAndFall()
     {
-        GetComponent<Rigidbody>().isKinematic = true;
+		GetComponent<Rigidbody>().isKinematic = true;
+		GetComponent<Rigidbody>().velocity = Vector3.zero;
+		GetComponent<Rigidbody>().angularVelocity = Vector3.zero; 
         StartCoroutine(TurnToGround());
         StartCoroutine(FallIntoGround());
     }
@@ -83,11 +85,7 @@ public class PlayerFall : MonoBehaviour
             yield return delay;
         }
         StopCoroutine(ForceStandUp());
-        myTransform.localRotation = finalRotation;
-        Input.ResetInputAxes();
-        GetComponent<Rigidbody>().isKinematic = false;
-        isStandingUp = false;
-        PlayerReachedGound();
+		FinishUpStanding();
     }
 
     private IEnumerator ForceStandUp()
@@ -96,13 +94,20 @@ public class PlayerFall : MonoBehaviour
         if (isStandingUp)
         {
             StopCoroutine(StandUp());
-            myTransform.localRotation = initialRotation;
-            Input.ResetInputAxes();
-            GetComponent<Rigidbody>().isKinematic = false;
-            isStandingUp = false;
-            PlayerReachedGound();
+			FinishUpStanding();
         }
     }
+
+    private void FinishUpStanding()
+	{
+		myTransform.localRotation = initialRotation;
+        Input.ResetInputAxes();
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        GetComponent<Rigidbody>().isKinematic = false;
+        isStandingUp = false;
+        PlayerReachedGound();
+	}
 
     private bool thereIsDifferenceQuaternions(Quaternion q1, Quaternion q2)
     {
