@@ -76,6 +76,7 @@ public class InputKeysManager : MonoBehaviour {
         isBalancing = true;
         isFalling = false;
         isStandingUp = false;
+		isCrouching = false;  
     }
 
     private void ChangeGround()
@@ -83,6 +84,7 @@ public class InputKeysManager : MonoBehaviour {
         isBalancing = false;
         isFalling = false;
         isStandingUp = false;
+		isCrouching = false;  
     }
 
     private void ChangeFalling()
@@ -90,13 +92,15 @@ public class InputKeysManager : MonoBehaviour {
         isBalancing = false;
         isFalling = true;
         isStandingUp = false;
+		isCrouching = false;  
     }
 
     private void ChangeStandingUp()
     {
         isBalancing = false;
         isFalling = false;
-        isStandingUp = true;
+		isStandingUp = true;
+		isCrouching = false;  
     }
 
     // Update is called once per frame
@@ -129,14 +133,24 @@ public class InputKeysManager : MonoBehaviour {
 
 		if (Input.GetKeyDown(KeyCode.LeftControl))
         {
+			if (isFalling || isStandingUp)
+				return;
+			
 			isCrouching = true;
 			crouchingController.InputCrouch();
+			rightHand.CheckCrouching();
+			leftHand.CheckCrouching();
         }
 
 		if (Input.GetKeyUp(KeyCode.LeftControl))
         {
+			if (isFalling || isStandingUp)
+                return;
+			
             isCrouching = false;   
 			crouchingController.InputStandUp();
+			rightHand.CheckCrouching();
+            leftHand.CheckCrouching();
         }
     }
 }

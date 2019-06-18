@@ -18,6 +18,8 @@ public class Crouching : MonoBehaviour
 	void Start()
     {
         myTransform = transform;
+		PlayerBalance.PlayerFellFromBranch += RestorePosition;
+		GraspManager.PlayerIsOnBranch += RestorePosition;
     }
 
     public void InputCrouch()
@@ -51,4 +53,9 @@ public class Crouching : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
     }
+
+    private void RestorePosition()
+	{
+		myTransform.position = initialTransform.position;
+	}
 }

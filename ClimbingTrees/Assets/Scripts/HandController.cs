@@ -15,6 +15,9 @@ public class HandController : MonoBehaviour {
     [SerializeField]
     private Transform initialTransform;
 
+	[SerializeField]
+    private Transform crouchingTransform;
+
     private Transform myTransform;
 
     private bool isExtended;
@@ -50,7 +53,13 @@ public class HandController : MonoBehaviour {
     public void InputDropHand()
     {
         ReturnHandsToOGPosition();
-    }    
+    }  
+
+    public void CheckCrouching()
+	{
+		if (isExtended)
+			InputExtendHand();
+	}
 
     private void ReturnHandsToOGPosition()
     {
@@ -93,10 +102,11 @@ public class HandController : MonoBehaviour {
 
     private IEnumerator ExtendHand()
     {
-        isExtending = true;
-        while(myTransform.position != targetTransform.position)
+		isExtending = true;
+		Transform objectiveTransform = InputKeysManager.Instance.IsCrouching? crouchingTransform : targetTransform;
+		while(myTransform.position != objectiveTransform.position)
         {
-            myTransform.position = Vector3.MoveTowards(myTransform.position, targetTransform.position, Time.fixedDeltaTime * extendSpeed);
+			myTransform.position = Vector3.MoveTowards(myTransform.position, objectiveTransform.position, Time.fixedDeltaTime * extendSpeed);
             yield return new WaitForFixedUpdate();
         }
         isExtending = false;
