@@ -13,15 +13,25 @@ public class TreeBranchBehaviour : MonoBehaviour
 
     private bool isCurrentBranch;
 
+	[SerializeField]
+	private bool isTreeBase;
+
     public bool IsCurrentBranch
     {
         get { return isCurrentBranch; }
         private set { isCurrentBranch = value; }
     }
+
+	public bool IsTreeBase
+    {
+		get { return isTreeBase; }
+		private set { isTreeBase = value; }
+    }
     // Use this for initialization
     void Start()
     {
         GraspManager.PlayerTeleported += ResetBranch;
+		GraspManager.PlayerReachedGound += ResetBranch;
         PlayerBalance.PlayerFellFromBranch += ResetBranch;
         materialRenderer = GetComponent<MeshRenderer>();
         color = materialRenderer.material.color;

@@ -33,12 +33,19 @@ public class PlayerBalance : MonoBehaviour
     {
         myTransform = transform;
         GraspManager.PlayerIsOnBranch += ChangeBalance;
+		GraspManager.PlayerReachedGound += ChangeGround;
+        PlayerFall.PlayerReachedGound += ChangeGround;
     }
 
     private void ChangeBalance()
     {
         StopAllCoroutines();
         StartCoroutine(ApplyForce());
+    }
+
+	private void ChangeGround()
+    {
+        StopAllCoroutines();
     }
 
     private void SetInitialPlayerRotation()

@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
         GraspManager.PlayerIsOnBranch += ChangeBalance;
         PlayerFall.PlayerReachedGound += ChangeGround;
+		GraspManager.PlayerReachedGound += ChangeGround;
         StartCoroutine(Walking());
     }
 

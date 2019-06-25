@@ -66,6 +66,7 @@ public class InputKeysManager : MonoBehaviour {
             DestroyImmediate(this);
 
         GraspManager.PlayerIsOnBranch += ChangeBalance;
+		GraspManager.PlayerReachedGound += ChangeGround;
         PlayerBalance.PlayerFellFromBranch += ChangeFalling;
         PlayerFall.PlayerReachedGound += ChangeGround;
         PlayerFall.PlayerStandingUp += ChangeStandingUp;

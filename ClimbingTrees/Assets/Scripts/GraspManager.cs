@@ -7,6 +7,7 @@ public class GraspManager : MonoBehaviour {
     public delegate void GraspActions();
     public static event GraspActions PlayerTeleported;
     public static event GraspActions PlayerIsOnBranch;
+	public static event GraspActions PlayerReachedGound;
 
     public static GraspManager Instance
     {
@@ -84,7 +85,15 @@ public class GraspManager : MonoBehaviour {
         }
 
         PlayerTeleported();
-        PlayerIsOnBranch();
-        currentBranch.SetAsCurrentBranch();
+
+		if(!currentBranch.IsTreeBase)
+		{
+			PlayerIsOnBranch();
+            currentBranch.SetAsCurrentBranch();
+		}
+		else
+		{
+			PlayerReachedGound();
+		}
     }
 }
