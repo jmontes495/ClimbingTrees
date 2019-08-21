@@ -16,6 +16,12 @@ public class TreeBranchBehaviour : MonoBehaviour
 	[SerializeField]
 	private bool isTreeBase;
 
+    [SerializeField]
+    private Collider endCollider;
+
+    [SerializeField]
+    private Collider beginningCollider;
+
     public bool IsCurrentBranch
     {
         get { return isCurrentBranch; }
@@ -64,6 +70,11 @@ public class TreeBranchBehaviour : MonoBehaviour
     {
         isCurrentBranch = false;
         materialRenderer.material.color = color;
+        if (!isTreeBase)
+        {
+            beginningCollider.enabled = false;
+            endCollider.enabled = false;
+        }        
     }
 
     public void SetAsCurrentBranch()
@@ -72,6 +83,11 @@ public class TreeBranchBehaviour : MonoBehaviour
 		Color transluscent = color;
 		transluscent.a = 0.4f;
 		materialRenderer.material.color = transluscent;
+        if (!isTreeBase)
+        {
+            beginningCollider.enabled = true;
+            endCollider.enabled = true;
+        }
     }
 
     public Vector3 GetTeleportPosition()

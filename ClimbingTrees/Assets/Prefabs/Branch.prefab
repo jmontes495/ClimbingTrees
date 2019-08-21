@@ -225,3 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ab7584ebad847de8b6ac34eb58ae2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTreeBase: 0
+  endCollider: {fileID: 4346774379889188236}
+  beginningCollider: {fileID: 4346774379866747482}
