@@ -72,8 +72,8 @@ public class TreeBranchBehaviour : MonoBehaviour
         materialRenderer.material.color = color;
         if (!isTreeBase)
         {
-            beginningCollider.enabled = false;
-            endCollider.enabled = false;
+            beginningCollider.gameObject.SetActive(false);
+            endCollider.gameObject.SetActive(false); 
         }        
     }
 
@@ -85,8 +85,8 @@ public class TreeBranchBehaviour : MonoBehaviour
 		materialRenderer.material.color = transluscent;
         if (!isTreeBase)
         {
-            beginningCollider.enabled = true;
-            endCollider.enabled = true;
+            beginningCollider.gameObject.SetActive(true);
+            endCollider.gameObject.SetActive(true);
         }
     }
 
