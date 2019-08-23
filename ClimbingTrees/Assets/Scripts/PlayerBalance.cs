@@ -50,7 +50,7 @@ public class PlayerBalance : MonoBehaviour
 
     private void SetInitialPlayerRotation()
     {
-        myTransform.localRotation = InputKeysManager.Instance.currentBranchAngle;
+        myTransform.rotation = InputKeysManager.Instance.currentBranchAngle;
         currentInclination = 0;
         directionOfBranch = myTransform.forward;
         if (transform.localRotation.y - directionOfBranch.y > 0.5f || transform.localRotation.y - directionOfBranch.y < -0.5f)

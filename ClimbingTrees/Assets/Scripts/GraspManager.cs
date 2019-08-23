@@ -77,7 +77,8 @@ public class GraspManager : MonoBehaviour {
         finalPosition.y += 1;
         Transform player = gameObject.transform;
 
-        InputKeysManager.Instance.currentBranchAngle = objectRightHand.transform.localRotation;
+        InputKeysManager.Instance.currentBranchAngle = objectRightHand.transform.rotation;
+        player.GetComponent<BoxCollider>().isTrigger = true;
         while(player.position != finalPosition)
         {
             player.position = Vector3.MoveTowards(player.position, finalPosition, Time.fixedDeltaTime * telespeed);
@@ -85,8 +86,7 @@ public class GraspManager : MonoBehaviour {
         }
 
         PlayerTeleported();
-
-		if(!currentBranch.IsTreeBase)
+        if (!currentBranch.IsTreeBase)
 		{
 			PlayerIsOnBranch();
             currentBranch.SetAsCurrentBranch();
@@ -95,5 +95,7 @@ public class GraspManager : MonoBehaviour {
 		{
 			PlayerReachedGound();
 		}
+        player.GetComponent<BoxCollider>().isTrigger = false;
+
     }
 }
