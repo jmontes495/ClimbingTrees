@@ -10,14 +10,23 @@ public class PlayerUIController : MonoBehaviour
 
     private int fruitsCollected = 0;
 
-    void Start()
+    private int totalFruits;
+
+    private void Awake()
     {
         FruitCollector.FruitCollected += IncreaseFruitCounter;
+        FruitCollector.FruitCreated += AddToTotalFruits;
+    }
+
+    private void AddToTotalFruits()
+    {
+        totalFruits++;
+        fruitCounter.text = fruitsCollected + " / " + totalFruits;
     }
 
     private void IncreaseFruitCounter()
     {
         fruitsCollected++;
-        fruitCounter.text = "x" + fruitsCollected;
+        fruitCounter.text = fruitsCollected + " / " + totalFruits;
     }
 }
