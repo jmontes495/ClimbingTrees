@@ -69,7 +69,7 @@ public class PlayerBalance : MonoBehaviour
         while (InputKeysManager.Instance.IsBalancing && currentInclination < balanceLimit && currentInclination > -balanceLimit)
         {
             float translation = Input.GetAxis("Vertical") * walkingSpeed * Time.deltaTime;
-            float straff = Input.GetAxis("Horizontal") * -strength;
+            //float straff = Input.GetAxis("Horizontal") * -strength;
             float directionOfWalking = 1;
 
             if (transform.localRotation.y - directionOfBranch.y > 0.5f || transform.localRotation.y - directionOfBranch.y < -0.5f)
@@ -77,7 +77,7 @@ public class PlayerBalance : MonoBehaviour
 
             transform.position += directionOfBranch*translation*directionOfWalking;
 
-            currentInclination = acceleration*currentInclination + straff;
+            //currentInclination = acceleration*currentInclination + straff;
             myTransform.Rotate(new Vector3(0, 0, currentInclination), Space.Self);
 
             

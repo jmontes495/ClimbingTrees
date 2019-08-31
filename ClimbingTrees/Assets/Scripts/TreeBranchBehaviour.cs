@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TreeBranchBehaviour : MonoBehaviour
 {
+    [SerializeField]
+    private MeshRenderer materialRenderer;
 
-    MeshRenderer materialRenderer;
-    
     private Transform teleportPosition;
 
     private Color color;
@@ -39,7 +39,6 @@ public class TreeBranchBehaviour : MonoBehaviour
         GraspManager.PlayerTeleported += ResetBranch;
 		GraspManager.PlayerReachedGound += ResetBranch;
         PlayerBalance.PlayerFellFromBranch += ResetBranch;
-        materialRenderer = GetComponent<MeshRenderer>();
         color = materialRenderer.material.color;
         teleportPosition = transform;
     }

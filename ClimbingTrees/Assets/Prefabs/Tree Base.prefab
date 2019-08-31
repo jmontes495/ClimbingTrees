@@ -104,4 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ab7584ebad847de8b6ac34eb58ae2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  materialRenderer: {fileID: 6705920198801647624}
   isTreeBase: 1
+  endCollider: {fileID: 0}
+  beginningCollider: {fileID: 0}
