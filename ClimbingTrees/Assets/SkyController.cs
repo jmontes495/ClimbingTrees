@@ -1,9 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SkyController : MonoBehaviour
 {
+    [SerializeField]
+    private Light sunlight;
+
     private float fruitsCollected = 0;
 
     private float totalFruits;
@@ -12,11 +14,27 @@ public class SkyController : MonoBehaviour
 
     private float skyboxBlendFactor = 0;
 
+    [SerializeField]
+    private Color sunriseColor;
+
+    [SerializeField]
+    private Color morningColor;
+
+    [SerializeField]
+    private Color afternoonColor;
+
+    [SerializeField]
+    private Color nightColor;
+
     private void Awake()
     {
         FruitCollector.FruitCollected += IncreaseFruitCounter;
         FruitCollector.FruitCreated += AddToTotalFruits;
-        RenderSettings.skybox.SetFloat("_Blend", 0);
+    }
+
+    private void Start()
+    {
+        AdaptSky();
     }
 
     private void Update()
@@ -28,7 +46,6 @@ public class SkyController : MonoBehaviour
     private void AddToTotalFruits()
     {
         totalFruits++;
-        AdaptSky();
     }
 
     private void IncreaseFruitCounter()
@@ -43,6 +60,7 @@ public class SkyController : MonoBehaviour
             return;
 
         StartCoroutine(BlendSky());
+        BlendSun();
     }
 
     private IEnumerator BlendSky()
@@ -55,5 +73,39 @@ public class SkyController : MonoBehaviour
             RenderSettings.skybox.SetFloat("_Blend", skyboxBlendFactor);
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    private void BlendSun()
+    {
+        Color currentColor = sunlight.color;
+        Color targetColor = currentColor;
+
+        float target = (fruitsCollected / totalFruits);
+
+        if (target <= 0.33f)
+            targetColor = calculateAverageColor(currentColor, morningColor);
+        else if (target <= 0.66f)
+            targetColor = calculateAverageColor(currentColor, afternoonColor);
+        else
+            targetColor = calculateAverageColor(currentColor, nightColor);
+
+        sunlight.color = targetColor;
+    }
+
+    private Color calculateAverageColor(Color color1, Color color2)
+    {
+        float r = (color1.r + color2.r) / 2;
+        float g = (color1.g + color2.g) / 2;
+        float b = (color1.b + color2.b) / 2;
+        float a = (color1.a + color2.a) / 2;
+
+        Debug.LogError(r + "  - " + g + "  - " + b + "  - " + a);
+
+        return new Color(r, g, b, a);
+    }
+
+    private void OnDestroy()
+    {
+        RenderSettings.skybox.SetFloat("_Blend", 0);
     }
 }
