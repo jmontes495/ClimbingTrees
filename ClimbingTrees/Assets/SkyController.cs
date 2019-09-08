@@ -37,12 +37,6 @@ public class SkyController : MonoBehaviour
         AdaptSky();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-            IncreaseFruitCounter();
-    }
-
     private void AddToTotalFruits()
     {
         totalFruits++;
@@ -98,8 +92,6 @@ public class SkyController : MonoBehaviour
         float g = (color1.g + color2.g) / 2;
         float b = (color1.b + color2.b) / 2;
         float a = (color1.a + color2.a) / 2;
-
-        Debug.LogError(r + "  - " + g + "  - " + b + "  - " + a);
 
         return new Color(r, g, b, a);
     }
