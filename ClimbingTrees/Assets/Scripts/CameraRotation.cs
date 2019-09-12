@@ -4,63 +4,31 @@ using UnityEngine;
 
 public class CameraRotation : MonoBehaviour
 {
-
-    Vector2 mouseLook;
-    Vector2 smoothV;
-    Vector2 scaleVector;
-    float sensitivity = 1.0f;
-    float smoothing = 2.0f;
+    float sensitivity = 0.7f;
     Transform myTransform;
-
     GameObject character;
-    Quaternion originalRotation;
-    bool climbing = false;
-    bool falling = false;
-    float threshold = 0.05f;
-    // Use this for initialization
+
     void Start()
     {
         character = this.transform.parent.gameObject;
-        scaleVector = new Vector2(sensitivity * smoothing, sensitivity * smoothing);
         myTransform = transform;
-        originalRotation = myTransform.localRotation;
-        GraspManager.PlayerTeleported += PlayerClimbing;
+        CursorControl.SetLocalCursorPos(new Vector2(Screen.width / 2, Screen.height / 2));
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(!climbing && !falling && !InputKeysManager.Instance.IsFalling && !InputKeysManager.Instance.IsStandingUp)
+        if(!InputKeysManager.Instance.IsFalling && !InputKeysManager.Instance.IsStandingUp)
         {
-            var md = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-            md = Vector2.Scale(md, scaleVector);
-            smoothV.x = Mathf.Lerp(smoothV.x, md.x, 1f / smoothing);
-            smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
-            mouseLook += smoothV;
-            mouseLook.y = Mathf.Clamp(mouseLook.y, -90f, 90f);
+            Vector2 mousePosition = (Vector2)Input.mousePosition;
+            float x = mousePosition.x - Screen.width / 2;
+            float y = mousePosition.y - Screen.height / 2;
+            x *= sensitivity;
+            y *= sensitivity;
 
-            transform.localRotation = Quaternion.AngleAxis(mouseLook.y, Vector3.right);
-            character.transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X"), 0), Space.Self);
+            y = Mathf.Clamp(y, -90, 90);
+
+            character.transform.eulerAngles = new Vector3(0, x, 0);
+            transform.eulerAngles = new Vector3(-y,x,0);
         }
-    }
-
-    public void PlayerClimbing()
-    {
-        StartCoroutine(MoveFaceAfterClimbing());
-    }
-
-    private IEnumerator MoveFaceAfterClimbing()
-    {
-        climbing = true;
-        Quaternion finalRotation = myTransform.localRotation;
-        finalRotation.x = originalRotation.x;
-        while (myTransform.localRotation.x > threshold || myTransform.localRotation.x < -threshold)
-        {
-            myTransform.localRotation = Quaternion.Slerp(myTransform.localRotation, finalRotation, 1/5f);
-            yield return new WaitForFixedUpdate();
-        }
-        // FOR LATER, TILTING THE CAMERA DOWN transform.Rotate(new Vector3(20, 0, 0), Space.Self);
-        Input.ResetInputAxes();
-        climbing = false;
     }
 }

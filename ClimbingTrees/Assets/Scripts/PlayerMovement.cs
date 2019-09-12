@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         myTransform = transform;
         rb = GetComponent<Rigidbody>();
         GraspManager.PlayerIsOnBranch += ChangeBalance;
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour {
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
     }
 
     private void ChangeBalance()
