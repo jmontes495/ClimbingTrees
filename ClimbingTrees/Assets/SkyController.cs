@@ -37,6 +37,12 @@ public class SkyController : MonoBehaviour
         AdaptSky();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+            IncreaseFruitCounter();
+    }
+
     private void AddToTotalFruits()
     {
         totalFruits++;

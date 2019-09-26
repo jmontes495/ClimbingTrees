@@ -24,7 +24,7 @@ public class HandController : MonoBehaviour {
 
     private bool isExtending;
 
-    private float extendSpeed = 10f;
+    private float extendSpeed = 3f;
 
     private Transform originalParent;
 
