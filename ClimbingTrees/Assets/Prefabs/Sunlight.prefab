@@ -45,7 +45,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.6839622, g: 1, b: 0.9887859, a: 1}
+  m_Color: {r: 0.99543864, g: 1, b: 0.68235296, a: 1}
   m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sunlight: {fileID: 4225707691439318326}
-  sunriseColor: {r: 0.7028302, g: 0.9648921, b: 1, a: 1}
+  sunriseColor: {r: 1, g: 0.99355394, b: 0.7019608, a: 1}
   morningColor: {r: 1, g: 0.99631155, b: 0.6179246, a: 1}
   afternoonColor: {r: 1, g: 0.46787477, b: 0, a: 1}
   nightColor: {r: 0.34394217, g: 0, b: 1, a: 1}
