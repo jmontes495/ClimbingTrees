@@ -41,6 +41,9 @@ public class TreeBranchBehaviour : MonoBehaviour
         PlayerBalance.PlayerFellFromBranch += ResetBranch;
         color = materialRenderer.material.color;
         teleportPosition = transform;
+
+        if(!isTreeBase)
+            transform.localPosition = new Vector3(transform.localPosition.x, TreeSpawningManager.Instance.AdjustHeight(transform.localPosition.y), transform.localPosition.z);
     }
 
     private void OnTriggerEnter(Collider collision)

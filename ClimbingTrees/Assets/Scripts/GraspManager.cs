@@ -74,7 +74,7 @@ public class GraspManager : MonoBehaviour {
         float x = LeftHand.position.x + RightHand.position.x / 2;
         float z = LeftHand.position.z + RightHand.position.z / 2;
         Vector3 finalPosition = 0.5f*(LeftHand.position + RightHand.position);
-        finalPosition.y += 0.3f;
+        finalPosition.y = objectLeftHand.transform.position.y + TreeSpawningManager.Instance.GetPlayerHeight();
         Transform player = gameObject.transform;
 
         InputKeysManager.Instance.currentBranchAngle = objectRightHand.transform.rotation;
