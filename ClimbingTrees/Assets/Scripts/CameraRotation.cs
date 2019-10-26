@@ -22,7 +22,7 @@ public class CameraRotation : MonoBehaviour
             Vector2 mousePosition = (Vector2)Input.mousePosition;
             float x = mousePosition.x - Screen.width / 2;
             float y = mousePosition.y - Screen.height / 2;
-            x *= sensitivity;
+            x *= sensitivity * 1.5f;
             y *= sensitivity;
 
             y = Mathf.Clamp(y, -90, 90);
