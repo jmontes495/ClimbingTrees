@@ -34,13 +34,13 @@ public class HandController : MonoBehaviour {
     [SerializeField]
     private GraspManager graspManager;
 
-    private bool lockedToBranch;
+    private bool lockedToObject;
 
     void Start () {
         GraspManager.PlayerTeleported += PopHandsToOGPosition;
         myTransform = transform;
         isExtended = false;
-        lockedToBranch = false;
+        lockedToObject = false;
         originalParent = myTransform.parent;
 	}
 	
@@ -64,7 +64,7 @@ public class HandController : MonoBehaviour {
     private void ReturnHandsToOGPosition()
     {
         StopAllCoroutines();
-        lockedToBranch = false;
+        lockedToObject = false;
         isExtending = false;
         isExtended = false;
         graspManager.ChangeGraspObject(null, typeOfHand);
@@ -75,7 +75,7 @@ public class HandController : MonoBehaviour {
     private void PopHandsToOGPosition()
     {
         StopAllCoroutines();
-        lockedToBranch = false;
+        lockedToObject = false;
         isExtending = false;
         isExtended = false;
         graspManager.ChangeGraspObject(null, typeOfHand);
@@ -88,15 +88,20 @@ public class HandController : MonoBehaviour {
         if (InputKeysManager.Instance.IsFalling || !isExtending)
             return;
 
-        TreeBranchBehaviour branch = other.GetComponent<TreeBranchBehaviour>();
-        if (branch == null || branch.IsCurrentBranch)
+        GrabbableObject contactObject = other.GetComponent<GrabbableObject>();
+        if (contactObject == null)
             return;
-        
-        lockedToBranch = true;
+
+        lockedToObject = true;
         isExtending = false;
         isExtended = true;
         StopAllCoroutines();
-        myTransform.parent = otherParent;
+
+        if (!contactObject.IsStaticObject())
+            contactObject.transform.parent = myTransform;
+        else
+            myTransform.parent = otherParent;
+        
         graspManager.ChangeGraspObject(other.gameObject, typeOfHand);
     }
 

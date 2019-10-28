@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreeBranchBehaviour : MonoBehaviour
+public class TreeBranchBehaviour : GrabbableObject
 {
-    [SerializeField]
-    private MeshRenderer materialRenderer;
-
     private Transform teleportPosition;
-
-    private Color color;
 
     private bool isCurrentBranch;
 
@@ -46,26 +41,25 @@ public class TreeBranchBehaviour : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, TreeSpawningManager.Instance.AdjustHeight(transform.localPosition.y), transform.localPosition.z);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    protected void OnTriggerEnter(Collider collision)
     {
-        if (InputKeysManager.Instance.IsFalling || isCurrentBranch)
+        if (isCurrentBranch)
             return;
 
-        if (materialRenderer.material.color == Color.yellow)
-            materialRenderer.material.color = Color.green;
-        else
-            materialRenderer.material.color = Color.yellow;
+        base.OnTriggerEnter(collision);
     }
 
-    private void OnTriggerExit(Collider collision)
+    protected void OnTriggerExit(Collider collision)
     {
-        if (InputKeysManager.Instance.IsFalling || isCurrentBranch)
+        if (isCurrentBranch)
             return;
 
-        if (materialRenderer.material.color == Color.yellow)
-            materialRenderer.material.color = color;
-        else
-            materialRenderer.material.color = Color.yellow;
+        base.OnTriggerExit(collision);
+    }
+
+    public override bool IsStaticObject()
+    {
+        return true;
     }
 
     private void ResetBranch()

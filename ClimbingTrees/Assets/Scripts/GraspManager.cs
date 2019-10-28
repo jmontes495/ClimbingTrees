@@ -50,8 +50,11 @@ public class GraspManager : MonoBehaviour {
         {
             if (ReferenceEquals(objectLeftHand, objectRightHand))
             {
-                currentBranch = objectLeftHand.GetComponent<TreeBranchBehaviour>();
-                Teleport();
+                if (objectLeftHand.GetComponent<TreeBranchBehaviour>() != null && objectRightHand.GetComponent<TreeBranchBehaviour>() != null)
+                {
+                    currentBranch = objectLeftHand.GetComponent<TreeBranchBehaviour>();
+                    Teleport();
+                }
             }
         }
     }
