@@ -27,11 +27,16 @@ public class GraspManager : MonoBehaviour {
     [SerializeField]
     private Transform RightHand;
 
+    [SerializeField]
+    private Camera playerCamera;
+
     private float telespeed = 3f;
 
     private static GraspManager instance;
 
     private TreeBranchBehaviour currentBranch;
+
+    private GrabbableObject objectInHands;
 
     void Awake()
     {
@@ -65,6 +70,28 @@ public class GraspManager : MonoBehaviour {
             objectLeftHand = newGameObject;
         else
             objectRightHand = newGameObject;
+    }
+
+    public void ChangeObjectInHands(GrabbableObject newObject, Transform hand)
+    {
+        if (ReferenceEquals(objectLeftHand, objectRightHand))
+        {
+            objectInHands = newObject;
+            objectInHands.ChangeParent(hand);
+        }
+    }
+
+    public void ClearObjectInHands()
+    {
+        if (objectInHands == null)
+            return;
+        
+        if(!ReferenceEquals(objectLeftHand, objectInHands) || !ReferenceEquals(objectRightHand, objectInHands))
+        {
+            objectInHands.ChangeParent(null);
+            objectInHands.AddForceInDirection(playerCamera.transform.forward);
+            objectInHands = null;
+        }
     }
 
     private void Teleport()

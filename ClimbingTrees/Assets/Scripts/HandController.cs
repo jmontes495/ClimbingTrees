@@ -89,20 +89,36 @@ public class HandController : MonoBehaviour {
             return;
 
         GrabbableObject contactObject = other.GetComponent<GrabbableObject>();
+
         if (contactObject == null)
             return;
+        
+        contactObject.UpdateColorUp();
 
         lockedToObject = true;
         isExtending = false;
         isExtended = true;
         StopAllCoroutines();
 
+        graspManager.ChangeGraspObject(other.gameObject, typeOfHand);
+
         if (!contactObject.IsStaticObject())
-            contactObject.transform.parent = myTransform;
+            graspManager.ChangeObjectInHands(contactObject, this.transform);
         else
             myTransform.parent = otherParent;
         
-        graspManager.ChangeGraspObject(other.gameObject, typeOfHand);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        GrabbableObject contactObject = other.GetComponent<GrabbableObject>();
+
+        if (contactObject == null)
+            return;
+        
+        contactObject.UpdateColorDown();
+        graspManager.ChangeGraspObject(null, typeOfHand);
+        graspManager.ClearObjectInHands();
     }
 
     private IEnumerator ExtendHand()

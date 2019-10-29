@@ -9,12 +9,20 @@ public class GrabbableObject : MonoBehaviour
 
     protected Color color;
 
+    private Transform myTransform;
+
+    private Rigidbody rigidbody;
+
+    private float throwSpeed = 30f;
+
     void Start()
     {
         color = materialRenderer.material.color;
+        myTransform = gameObject.transform;
+        rigidbody = GetComponent<Rigidbody>();
     }
 
-    protected virtual void OnTriggerEnter(Collider collision)
+    public virtual void UpdateColorUp()
     {
         if (InputKeysManager.Instance.IsFalling)
             return;
@@ -25,7 +33,7 @@ public class GrabbableObject : MonoBehaviour
             materialRenderer.material.color = Color.yellow;
     }
 
-    protected virtual void OnTriggerExit(Collider collision)
+    public virtual void UpdateColorDown()
     {
         if (InputKeysManager.Instance.IsFalling)
             return;
@@ -39,5 +47,19 @@ public class GrabbableObject : MonoBehaviour
     public virtual bool IsStaticObject()
     {
         return false;
+    }
+
+    public void ChangeParent(Transform parent)
+    {
+        myTransform.parent = parent;
+        rigidbody.useGravity = parent == null;
+        rigidbody.isKinematic = parent != null;
+        if (parent != null)
+            rigidbody.velocity = Vector3.zero;
+    }
+
+    public void AddForceInDirection(Vector3 direction)
+    {
+        rigidbody.AddForce(direction * throwSpeed);
     }
 }

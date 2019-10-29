@@ -120,11 +120,13 @@ public class InputKeysManager : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
             leftHand.InputDropHand();
+            GraspManager.Instance.ClearObjectInHands();
         }
 
         if (Input.GetMouseButtonUp(1))
         {
             rightHand.InputDropHand();
+            GraspManager.Instance.ClearObjectInHands();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

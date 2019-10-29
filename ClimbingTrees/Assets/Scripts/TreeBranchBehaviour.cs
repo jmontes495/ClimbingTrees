@@ -41,20 +41,20 @@ public class TreeBranchBehaviour : GrabbableObject
             transform.localPosition = new Vector3(transform.localPosition.x, TreeSpawningManager.Instance.AdjustHeight(transform.localPosition.y), transform.localPosition.z);
     }
 
-    protected void OnTriggerEnter(Collider collision)
+    protected void UpdateColorUp()
     {
         if (isCurrentBranch)
             return;
 
-        base.OnTriggerEnter(collision);
+        base.UpdateColorUp();
     }
 
-    protected void OnTriggerExit(Collider collision)
+    protected void UpdateColorDown()
     {
         if (isCurrentBranch)
             return;
 
-        base.OnTriggerExit(collision);
+        base.UpdateColorDown();
     }
 
     public override bool IsStaticObject()
