@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3226957448246513260}
   - component: {fileID: 5312422798169261497}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 5408608012115017672}
   - component: {fileID: 5408608012115017673}
   - component: {fileID: 5408608012115017679}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Fruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +112,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: b9410818e86696b448dbb8a2c49e86c4, type: 3}
       propertyPath: m_Name
       value: mango
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b9410818e86696b448dbb8a2c49e86c4, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b9410818e86696b448dbb8a2c49e86c4, type: 3}
       propertyPath: m_LocalPosition.x
