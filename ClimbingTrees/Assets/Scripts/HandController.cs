@@ -92,6 +92,9 @@ public class HandController : MonoBehaviour {
 
         if (contactObject == null)
             return;
+
+        if (contactObject.GetComponent<TreeBranchBehaviour>() != null && contactObject.GetComponent<TreeBranchBehaviour>().IsCurrentBranch)
+            return;
         
         contactObject.UpdateColorUp();
 

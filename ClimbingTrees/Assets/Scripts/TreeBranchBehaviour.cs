@@ -41,7 +41,7 @@ public class TreeBranchBehaviour : GrabbableObject
             transform.localPosition = new Vector3(transform.localPosition.x, TreeSpawningManager.Instance.AdjustHeight(transform.localPosition.y), transform.localPosition.z);
     }
 
-    protected void UpdateColorUp()
+    public override void UpdateColorUp()
     {
         if (isCurrentBranch)
             return;
@@ -49,7 +49,7 @@ public class TreeBranchBehaviour : GrabbableObject
         base.UpdateColorUp();
     }
 
-    protected void UpdateColorDown()
+    public override void UpdateColorDown()
     {
         if (isCurrentBranch)
             return;

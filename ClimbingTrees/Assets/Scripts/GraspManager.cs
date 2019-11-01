@@ -74,7 +74,7 @@ public class GraspManager : MonoBehaviour {
 
     public void ChangeObjectInHands(GrabbableObject newObject, Transform hand)
     {
-        if (ReferenceEquals(objectLeftHand, objectRightHand))
+        if (ReferenceEquals(objectLeftHand, objectRightHand) || (newObject.GetComponent<GrabbableObject>() != null && !newObject.GetComponent<GrabbableObject>().RequiresBothHands))
         {
             objectInHands = newObject;
             objectInHands.ChangeParent(hand);

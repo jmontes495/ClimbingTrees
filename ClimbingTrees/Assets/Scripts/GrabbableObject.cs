@@ -7,13 +7,23 @@ public class GrabbableObject : MonoBehaviour
     [SerializeField]
     protected MeshRenderer materialRenderer;
 
+    [SerializeField]
+    protected bool requiresBothHands;
+
+    public bool RequiresBothHands
+    {
+        get { return requiresBothHands; }
+        private set { requiresBothHands = value; }
+    }
+
     protected Color color;
 
     private Transform myTransform;
 
     private Rigidbody rigidbody;
 
-    private float throwSpeed = 30f;
+    [SerializeField]
+    private float throwSpeed;
 
     void Start()
     {
@@ -49,7 +59,7 @@ public class GrabbableObject : MonoBehaviour
         return false;
     }
 
-    public void ChangeParent(Transform parent)
+    public virtual void ChangeParent(Transform parent)
     {
         myTransform.parent = parent;
         rigidbody.useGravity = parent == null;

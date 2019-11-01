@@ -42,6 +42,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialRenderer: {fileID: 726102519214888881}
+  requiresBothHands: 1
+  throwSpeed: 30
 --- !u!1001 &726102519217049553
 PrefabInstance:
   m_ObjectHideFlags: 0
