@@ -86,6 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5524378468891977198}
+  - component: {fileID: 3131139489765733791}
   m_Layer: 0
   m_Name: fence_piece
   m_TagString: Untagged
@@ -109,6 +110,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3131139489765733791
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623920771530025231}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0408096, y: 1.3912201, z: 0.070674896}
+  m_Center: {x: -0.38153458, y: 0.86234283, z: -0.013792038}
 --- !u!1 &8057084011835112284
 GameObject:
   m_ObjectHideFlags: 0

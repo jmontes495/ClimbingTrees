@@ -1,5 +1,57 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &4348667739973839471
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100484378589913797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.015464769, y: 0.10588832, z: 0.17264745}
+  m_Center: {x: -0.1218372, y: 0.19627559, z: -0.00190126}
+--- !u!65 &7019155057737702508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100484378589913797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.104139425, y: 0.014736516, z: 0.33776605}
+  m_Center: {x: -0.019373674, y: 0.022845672, z: -0.0009020718}
+--- !u!65 &1111538501955681776
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100484378589913799}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.016060334, y: 0.10513182, z: 0.15931813}
+  m_Center: {x: -0.1215389, y: 0.19665378, z: 0.000068947586}
+--- !u!65 &8223090675037085621
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100484378589913799}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09799304, y: 0.01780526, z: 0.33776614}
+  m_Center: {x: -0.016832108, y: 0.024756202, z: -0.0009020703}
 --- !u!1001 &2100484378589815905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9,7 +61,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: edee37ddd589ff046baa0d964bcd2bdb, type: 3}
       propertyPath: m_Name
-      value: foot_court
+      value: foot_court Variant
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: edee37ddd589ff046baa0d964bcd2bdb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -77,3 +129,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0933253977cd0454b989b8bc25bbdc83, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edee37ddd589ff046baa0d964bcd2bdb, type: 3}
+--- !u!1 &2100484378589913797 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: edee37ddd589ff046baa0d964bcd2bdb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2100484378589815905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2100484378589913799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100006, guid: edee37ddd589ff046baa0d964bcd2bdb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2100484378589815905}
+  m_PrefabAsset: {fileID: 0}
