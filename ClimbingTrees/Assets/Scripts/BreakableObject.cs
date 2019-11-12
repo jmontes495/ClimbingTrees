@@ -6,28 +6,46 @@ public class BreakableObject : MonoBehaviour
 {
     [SerializeField]
     protected int requiredHits;
+    [SerializeField]
+    protected AudioClip hit;
+    [SerializeField]
+    protected AudioClip wreck;
+    [SerializeField]
+    protected BoxCollider bodyCollider;
 
-    protected BoxCollider collider;
     protected int numberOfHits;
+    protected AudioSource audioSource;
 
     void Start()
     {
-        collider = GetComponent<BoxCollider>();   
+        audioSource = GetComponent<AudioSource>();
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
+        if (requiredHits <= numberOfHits)
+            return;
+        
         if (other.gameObject.layer != LayerMask.NameToLayer("Hammer"))
             return;
 
         numberOfHits++;
         if (requiredHits <= numberOfHits)
             DestroyBreakableObject();
+        else
+            PlayHitSound();
     }
 
     public virtual void DestroyBreakableObject()
     {
+        audioSource.PlayOneShot(wreck);
+        bodyCollider.enabled = false;
         Destroy(gameObject);
+    }
+
+    public virtual void PlayHitSound()
+    {
+        audioSource.PlayOneShot(hit);
     }
 }

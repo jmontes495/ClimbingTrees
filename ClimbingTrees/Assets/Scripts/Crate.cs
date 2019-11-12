@@ -15,6 +15,7 @@ public class Crate : BreakableObject
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         finalFruit.gameObject.SetActive(false);
         fruitCollider.enabled = false;
     }
@@ -24,5 +25,7 @@ public class Crate : BreakableObject
         finalFruit.gameObject.SetActive(true);
         crate.gameObject.SetActive(false);
         fruitCollider.enabled = true;
+        audioSource.PlayOneShot(wreck);
+        bodyCollider.enabled = false;
     }
 }
