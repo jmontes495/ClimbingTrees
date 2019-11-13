@@ -35,6 +35,7 @@ public class ItemHUD : MonoBehaviour
         if (distance < minimumSpace)
             proportion = 0;
 
+        spriteRenderer.transform.rotation = player.transform.rotation;
         spriteRenderer.transform.localScale = new Vector3(proportion, proportion, proportion);
         spriteRenderer.color = new Color(1f, 1f, 1f, proportion);
     }
