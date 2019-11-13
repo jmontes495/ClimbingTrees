@@ -18,9 +18,9 @@ public class GrabbableObject : MonoBehaviour
 
     protected Color color;
 
-    private Transform myTransform;
+    protected Transform myTransform;
 
-    private Rigidbody rigidbody;
+    protected Rigidbody rigidbody;
 
     [SerializeField]
     private float throwSpeed;

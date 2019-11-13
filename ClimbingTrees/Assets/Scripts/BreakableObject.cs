@@ -30,6 +30,9 @@ public class BreakableObject : MonoBehaviour
         if (other.gameObject.layer != LayerMask.NameToLayer("Hammer"))
             return;
 
+        if (other.GetComponent<Hammer>() != null)
+            other.GetComponent<Hammer>().ShowHammerHit();
+
         numberOfHits++;
         if (requiredHits <= numberOfHits)
             DestroyBreakableObject();
