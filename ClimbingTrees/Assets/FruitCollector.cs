@@ -15,6 +15,9 @@ public class FruitCollector : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        if (collision.gameObject.layer != LayerMask.NameToLayer("PlayerBody"))
+            return;
+
         FruitCollected();
         Destroy(gameObject);
     }

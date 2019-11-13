@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayerFromGround : MonoBehaviour
+public class FollowElementFromGround : MonoBehaviour
 {
-
     [SerializeField]
     private Transform theGround;
 
     [SerializeField]
     private Transform player;
 
+    [SerializeField]
+    private bool includeHeight;
+
     void Update()
     {
         Vector3 currentPosition = player.position;
-        currentPosition.y = theGround.position.y;
+        if(!includeHeight)
+            currentPosition.y = theGround.position.y;
         transform.position = currentPosition;
     }
 }
