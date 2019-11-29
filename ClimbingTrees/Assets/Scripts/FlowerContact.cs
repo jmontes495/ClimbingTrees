@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class FlowerContact : MonoBehaviour
 {
-    public delegate void PetalActions();
-    public static event PetalActions FlowerCollided;
 
     private AudioSource audioSource;
 
@@ -18,7 +16,6 @@ public class FlowerContact : MonoBehaviour
         if (other.gameObject.name != "Player")
             return;
 
-        FlowerCollided();
         audioSource.Play();
     }
 }
