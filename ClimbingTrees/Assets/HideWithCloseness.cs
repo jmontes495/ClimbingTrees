@@ -56,8 +56,6 @@ public class HideWithCloseness : MonoBehaviour
             isTransparent = true;
         }
 
-        Debug.LogError(proportion);
-
         meshRenderer.material.color = new Color(red, green, blue, proportion);
     }
 }

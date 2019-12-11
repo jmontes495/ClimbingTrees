@@ -227,9 +227,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   materialRenderer: {fileID: 1353843474705628092}
+  requiresBothHands: 0
+  throwSpeed: 0
   isTreeBase: 0
   endCollider: {fileID: 4346774379889188236}
   beginningCollider: {fileID: 4346774379866747482}
+  opaqueMat: {fileID: 2100000, guid: b027ed8eb667e484a939dc814b7bb3cc, type: 2}
+  transparentMat: {fileID: 2100000, guid: dd925b2a725c74b14886979cc3bfb5af, type: 2}
 --- !u!1001 &1353843474707522524
 PrefabInstance:
   m_ObjectHideFlags: 0

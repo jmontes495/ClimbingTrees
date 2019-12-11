@@ -17,6 +17,12 @@ public class TreeBranchBehaviour : GrabbableObject
     [SerializeField]
     private Collider beginningCollider;
 
+    [SerializeField]
+    private Material opaqueMat;
+
+    [SerializeField]
+    private Material transparentMat;
+
     public bool IsCurrentBranch
     {
         get { return isCurrentBranch; }
@@ -65,6 +71,7 @@ public class TreeBranchBehaviour : GrabbableObject
     private void ResetBranch()
     {
         isCurrentBranch = false;
+        materialRenderer.material = opaqueMat;
         materialRenderer.material.color = color;
         if (!isTreeBase)
         {
@@ -78,6 +85,8 @@ public class TreeBranchBehaviour : GrabbableObject
         isCurrentBranch = true;
 		Color transluscent = color;
 		transluscent.a = 0.4f;
+        materialRenderer.material = transparentMat;
+
 		materialRenderer.material.color = transluscent;
         if (!isTreeBase)
         {
