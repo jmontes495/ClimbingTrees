@@ -12,9 +12,9 @@ public class HideWithCloseness : MonoBehaviour
     private MeshRenderer meshRenderer;
 
     private GameObject player;
-    private float distanceLimit = 10f;
-    private float minimumSpace = 5f;
-    private float minimumDelta = 0.1f;
+    private float distanceLimit = 18f;
+    private float minimumSpace = 10f;
+    private float minimumDelta = 0.05f;
     private float green;
     private float red;
     private float blue;
@@ -44,7 +44,7 @@ public class HideWithCloseness : MonoBehaviour
 
         if (distance < minimumSpace || proportion < minimumDelta)
             proportion = minimumDelta;
-
+        
         if (proportion >= 1f && isTransparent)
         {
             meshRenderer.material = opaque;

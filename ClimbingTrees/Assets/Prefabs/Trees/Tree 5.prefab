@@ -474,12 +474,12 @@ PrefabInstance:
     - target: {fileID: 3174249995692172703, guid: e956ec44f459e5f4ea728a62c8704953,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.800045
+      value: 40.6
       objectReference: {fileID: 0}
     - target: {fileID: 3174249995692172703, guid: e956ec44f459e5f4ea728a62c8704953,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3174249995692172703, guid: e956ec44f459e5f4ea728a62c8704953,
         type: 3}
@@ -630,11 +630,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257690106422778548}
     m_Modifications:
-    - target: {fileID: 6705920198801647628, guid: 158d5f704c9044493884d130a9de2a71,
-        type: 3}
-      propertyPath: m_Name
-      value: Tree Base
-      objectReference: {fileID: 0}
     - target: {fileID: 6705920198801647629, guid: 158d5f704c9044493884d130a9de2a71,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -699,6 +694,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705920198801647628, guid: 158d5f704c9044493884d130a9de2a71,
+        type: 3}
+      propertyPath: m_Name
+      value: Tree Base
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 158d5f704c9044493884d130a9de2a71, type: 3}
@@ -985,11 +985,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257690106910306324}
     m_Modifications:
-    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
-        type: 3}
-      propertyPath: m_Name
-      value: Fruit (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 5408608012115017672, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1044,6 +1039,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
+        type: 3}
+      propertyPath: m_Name
+      value: Fruit (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4efc3b9e00c9842914eae4b56a7a02, type: 3}
@@ -1330,11 +1330,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257690106910306324}
     m_Modifications:
-    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
-        type: 3}
-      propertyPath: m_Name
-      value: Fruit (8)
-      objectReference: {fileID: 0}
     - target: {fileID: 5408608012115017672, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1389,6 +1384,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
+        type: 3}
+      propertyPath: m_Name
+      value: Fruit (8)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4efc3b9e00c9842914eae4b56a7a02, type: 3}
@@ -2875,11 +2875,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257690106910306324}
     m_Modifications:
-    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
-        type: 3}
-      propertyPath: m_Name
-      value: Fruit (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 5408608012115017672, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2934,6 +2929,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
+        type: 3}
+      propertyPath: m_Name
+      value: Fruit (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4efc3b9e00c9842914eae4b56a7a02, type: 3}
@@ -3420,11 +3420,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257690106910306324}
     m_Modifications:
-    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
-        type: 3}
-      propertyPath: m_Name
-      value: Fruit (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 5408608012115017672, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3480,6 +3475,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
+        type: 3}
+      propertyPath: m_Name
+      value: Fruit (5)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4efc3b9e00c9842914eae4b56a7a02, type: 3}
 --- !u!4 &286028189508763812 stripped
@@ -3495,11 +3495,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257690106910306324}
     m_Modifications:
-    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
-        type: 3}
-      propertyPath: m_Name
-      value: Fruit (7)
-      objectReference: {fileID: 0}
     - target: {fileID: 5408608012115017672, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3554,6 +3549,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
+        type: 3}
+      propertyPath: m_Name
+      value: Fruit (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4efc3b9e00c9842914eae4b56a7a02, type: 3}
@@ -3855,11 +3855,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257690106910306324}
     m_Modifications:
-    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
-        type: 3}
-      propertyPath: m_Name
-      value: Fruit (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 5408608012115017672, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3914,6 +3909,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
+        type: 3}
+      propertyPath: m_Name
+      value: Fruit (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4efc3b9e00c9842914eae4b56a7a02, type: 3}
@@ -4115,11 +4115,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257690106910306324}
     m_Modifications:
-    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
-        type: 3}
-      propertyPath: m_Name
-      value: Fruit (10)
-      objectReference: {fileID: 0}
     - target: {fileID: 5408608012115017672, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4174,6 +4169,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
+        type: 3}
+      propertyPath: m_Name
+      value: Fruit (10)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4efc3b9e00c9842914eae4b56a7a02, type: 3}
@@ -4575,11 +4575,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5257690106910306324}
     m_Modifications:
-    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
-        type: 3}
-      propertyPath: m_Name
-      value: Fruit (9)
-      objectReference: {fileID: 0}
     - target: {fileID: 5408608012115017672, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4634,6 +4629,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5408608012115017678, guid: 8d4efc3b9e00c9842914eae4b56a7a02,
+        type: 3}
+      propertyPath: m_Name
+      value: Fruit (9)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4efc3b9e00c9842914eae4b56a7a02, type: 3}
