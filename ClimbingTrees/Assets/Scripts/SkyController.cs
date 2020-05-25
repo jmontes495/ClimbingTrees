@@ -15,9 +15,6 @@ public class SkyController : MonoBehaviour
     private float skyboxBlendFactor = 0;
 
     [SerializeField]
-    private Color sunriseColor;
-
-    [SerializeField]
     private Color morningColor;
 
     [SerializeField]
@@ -81,25 +78,26 @@ public class SkyController : MonoBehaviour
         Color targetColor = currentColor;
 
         float target = (fruitsCollected / totalFruits);
-
-        if (target <= 0.33f)
-            targetColor = calculateAverageColor(currentColor, morningColor);
-        else if (target <= 0.66f)
-            targetColor = calculateAverageColor(currentColor, afternoonColor);
+        if (target < 0.5f)
+        {
+            float colorPosition = fruitsCollected / (totalFruits / 2);
+            targetColor = calculateAverageColor(colorPosition, morningColor, afternoonColor);
+        }
         else
-            targetColor = calculateAverageColor(currentColor, nightColor);
-
+        {
+            float colorPosition = (fruitsCollected - (totalFruits / 2)) / (totalFruits / 2);
+            targetColor = calculateAverageColor(colorPosition, afternoonColor, nightColor);
+        }
         sunlight.color = targetColor;
     }
 
-    private Color calculateAverageColor(Color color1, Color color2)
+    private Color calculateAverageColor(float colorPosition, Color color1, Color color2)
     {
-        float r = (color1.r + color2.r) / 2;
-        float g = (color1.g + color2.g) / 2;
-        float b = (color1.b + color2.b) / 2;
-        float a = (color1.a + color2.a) / 2;
+        float r = (color1.r * (1 - colorPosition) + color2.r * colorPosition);
+        float g = (color1.g * (1 - colorPosition) + color2.g * colorPosition);
+        float b = (color1.b * (1 - colorPosition) + color2.b * colorPosition);
 
-        return new Color(r, g, b, a);
+        return new Color(r, g, b, 1);
     }
 
     private void OnDestroy()
