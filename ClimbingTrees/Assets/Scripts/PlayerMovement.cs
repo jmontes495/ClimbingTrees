@@ -26,6 +26,9 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             Cursor.visible = true;
+
+        if (rb.velocity != Vector3.zero)
+            rb.velocity = Vector3.zero;
     }
 
     private void ChangeBalance()
