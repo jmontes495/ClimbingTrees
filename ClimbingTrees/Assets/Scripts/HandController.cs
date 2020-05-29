@@ -34,6 +34,13 @@ public class HandController : MonoBehaviour {
     [SerializeField]
     private GraspManager graspManager;
 
+    [SerializeField]
+    private Animator handAnimator;
+
+    [SerializeField]
+    private ParticleSystem particleSystem;
+
+
     private bool lockedToObject;
 
     void Start () {
@@ -68,6 +75,7 @@ public class HandController : MonoBehaviour {
         isExtending = false;
         isExtended = false;
         graspManager.ChangeGraspObject(null, typeOfHand);
+        handAnimator.SetBool("inBranch", false);
         myTransform.parent = originalParent;
         StartCoroutine(ReturnHand());
     }
@@ -79,6 +87,7 @@ public class HandController : MonoBehaviour {
         isExtending = false;
         isExtended = false;
         graspManager.ChangeGraspObject(null, typeOfHand);
+        handAnimator.SetBool("inBranch", false);
         myTransform.parent = originalParent;
         myTransform.position = initialTransform.position;
     }
@@ -96,7 +105,9 @@ public class HandController : MonoBehaviour {
         if (contactObject.GetComponent<TreeBranchBehaviour>() != null && contactObject.GetComponent<TreeBranchBehaviour>().IsCurrentBranch)
             return;
         
-        contactObject.UpdateColorUp();
+
+        //For now... bye
+        //contactObject.UpdateColorUp();
 
         lockedToObject = true;
         isExtending = false;
@@ -104,6 +115,9 @@ public class HandController : MonoBehaviour {
         StopAllCoroutines();
 
         graspManager.ChangeGraspObject(other.gameObject, typeOfHand);
+        handAnimator.SetBool("inBranch", true);
+        particleSystem.Play();
+
 
         if (!contactObject.IsStaticObject())
             graspManager.ChangeObjectInHands(contactObject, this.transform);
@@ -118,9 +132,12 @@ public class HandController : MonoBehaviour {
 
         if (contactObject == null)
             return;
-        
-        contactObject.UpdateColorDown();
+
+        //For now... bye
+        //contactObject.UpdateColorDown();
         graspManager.ChangeGraspObject(null, typeOfHand);
+        handAnimator.SetBool("inBranch", false);
+
         graspManager.ClearObjectInHands();
     }
 
