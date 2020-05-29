@@ -24,6 +24,8 @@ public class HandController : MonoBehaviour {
 
     private bool isExtending;
 
+    private bool isReturning;
+
     private float extendSpeed = 3f;
 
     private Transform originalParent;
@@ -43,12 +45,15 @@ public class HandController : MonoBehaviour {
 
     private bool lockedToObject;
 
+    private Quaternion originalRotation;
+
     void Start () {
         GraspManager.PlayerTeleported += PopHandsToOGPosition;
         myTransform = transform;
         isExtended = false;
         lockedToObject = false;
         originalParent = myTransform.parent;
+        originalRotation = myTransform.localRotation;
 	}
 	
 	public void InputExtendHand()
@@ -86,15 +91,17 @@ public class HandController : MonoBehaviour {
         lockedToObject = false;
         isExtending = false;
         isExtended = false;
+        isReturning = false;
         graspManager.ChangeGraspObject(null, typeOfHand);
         handAnimator.SetBool("inBranch", false);
         myTransform.parent = originalParent;
         myTransform.position = initialTransform.position;
+        myTransform.localRotation = originalRotation;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (InputKeysManager.Instance.IsFalling || !isExtending)
+        if (InputKeysManager.Instance.IsFalling || !isExtending || isReturning)
             return;
 
         GrabbableObject contactObject = other.GetComponent<GrabbableObject>();
@@ -106,13 +113,12 @@ public class HandController : MonoBehaviour {
             return;
         
 
-        //For now... bye
-        //contactObject.UpdateColorUp();
+        contactObject.UpdateColorUp();
 
+        StopAllCoroutines();
         lockedToObject = true;
         isExtending = false;
         isExtended = true;
-        StopAllCoroutines();
 
         graspManager.ChangeGraspObject(other.gameObject, typeOfHand);
         handAnimator.SetBool("inBranch", true);
@@ -130,11 +136,10 @@ public class HandController : MonoBehaviour {
     {
         GrabbableObject contactObject = other.GetComponent<GrabbableObject>();
 
-        if (contactObject == null)
+        if (contactObject == null || !isReturning)
             return;
 
-        //For now... bye
-        //contactObject.UpdateColorDown();
+        contactObject.UpdateColorDown();
         graspManager.ChangeGraspObject(null, typeOfHand);
         handAnimator.SetBool("inBranch", false);
 
@@ -156,13 +161,14 @@ public class HandController : MonoBehaviour {
 
     private IEnumerator ReturnHand()
     {
-        isExtending = true;
+        isReturning = true;
         while (myTransform.position != initialTransform.position)
         {
             myTransform.position = Vector3.MoveTowards(myTransform.position, initialTransform.position, Time.fixedDeltaTime * extendSpeed);
             yield return new WaitForFixedUpdate();
         }
-        isExtending = false;
+        myTransform.localRotation = originalRotation;
+        isReturning = false;
         isExtended = false;
     }
 

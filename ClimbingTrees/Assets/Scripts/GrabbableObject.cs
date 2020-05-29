@@ -48,10 +48,10 @@ public class GrabbableObject : MonoBehaviour
         if (InputKeysManager.Instance.IsFalling)
             return;
 
-        if (materialRenderer.material.color == Color.yellow)
-            materialRenderer.material.color = color;
-        else
+        if (materialRenderer.material.color == Color.green)
             materialRenderer.material.color = Color.yellow;
+        else if (materialRenderer.material.color == Color.yellow)
+            materialRenderer.material.color = color;
     }
 
     public virtual bool IsStaticObject()
